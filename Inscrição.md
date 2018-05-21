@@ -3,7 +3,7 @@
 <h2 id="abrir-inscrições">Abrir inscrições</h2>
 <p>Quando o período de inscrições abrir será enviado um email contendo aviso da inscrição.</p>
 <blockquote>
-<p>Verificar a possibilidade de enviar uma mensagem por facebook</p>
+<p>Verificar a possibilidade de enviar uma mensagem por Facebook</p>
 </blockquote>
 <h2 id="realizar-inscrições">Realizar inscrições</h2>
 <p>Durante o período de inscrições fica aberto a opção de inscrição.<br>
@@ -26,16 +26,16 @@ uma inscrição consiste em:</p>
 <td>evento</td>
 </tr>
 <tr>
-<td>nome para cracha</td>
+<td>nome para crachá</td>
 <td>texto</td>
 </tr>
 <tr>
-<td>Tipo de participacao</td>
-<td>Tipo de Participacao</td>
+<td>Tipo de participação</td>
+<td>Tipo de Participação</td>
 </tr>
 <tr>
 <td>Comissão</td>
-<td>Comissão, somente quem tem o tipo de particição Comissão preenche esse campo</td>
+<td>Comissão, somente quem tem o tipo de participação Comissão preenche esse campo</td>
 </tr>
 <tr>
 <td>Idade inicio evento</td>
@@ -46,19 +46,19 @@ uma inscrição consiste em:</p>
 <td>Polo</td>
 </tr>
 <tr>
-<td>Numero Participacoes</td>
+<td>Numero Participantes</td>
 <td>Caso não haja um histórico permitir que seja informado, caso o contrário preencher automaticamente</td>
 </tr>
 </tbody>
 </table><h2 id="ficha">Ficha</h2>
 <p>Após realizada a inscrição será enviado uma ficha padrão para impressão e assinatura dos responsáveis. Essa ficha fica disponível na parte do menu inscrições e são recebidas por email.</p>
-<h2 id="multiplas-inscrições">Multiplas inscrições</h2>
+<h2 id="múltiplas-inscrições">Múltiplas inscrições</h2>
 <p>Um usuário pode fazer inscrições para outro usuário, um evangelizador pode por exemplo inscrever sua turma.<br>
 Todos elas ficam vinculadas ao Usuário que cadastrou.<br>
 O cadastrante pode procurar os usuários no sistema para vincular a inscrição.<br>
 Caso seja encontrada um cadastro prévio não permitir que seja cadastrado e dizer o motivo.</p>
 <blockquote>
-<p>Verificar a possibilidade de pesquisar amigos do facebook para vincular a essa inscrição.</p>
+<p>Verificar a possibilidade de pesquisar amigos do Facebook para vincular a essa inscrição.</p>
 </blockquote>
 <blockquote>
 <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
