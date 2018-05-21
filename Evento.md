@@ -1,7 +1,13 @@
 <h1 id="evento">Evento</h1>
-<p>A COMEERJ é em si um evento.</p>
-<p>Usuários com perfil administrador podem criar um evento.</p>
-<p>Esse evento terá:</p>
+<p># Evento
+
+A COMEERJ é em si um evento.</p>
+<p>
+
+Usuários com perfil administrador podem criar um evento.</p>
+<p>
+
+Esse evento terá:</p>
 
 <table>
 <thead>
@@ -32,10 +38,32 @@
 <td>Data</td>
 </tr>
 </tbody>
-</table><p>Eventos não podem ser deletados.</p>
-<p>Eventos podem ser modificados.</p>
-<p>Na barra superior sempre mostra o evento corrente com informações básicas sobre ele assim como uma opção para escolher eventos anteriores.</p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
-</blockquote>
+</table><p>
 
+|Atributo|Nome|
+|--|--|
+|Id|Inteiro|
+|Versão|Número romano|
+|Tema|String|
+|Inicio evento|Data|
+|Fim evento|Data|
+|Inicio das inscricoes|Data|
+|Fim das inscricoes|Data|
+
+Eventos não podem ser deletados.</p>
+<p>
+
+Eventos podem ser modificados.</p>
+<p>
+
+Na barra superior sempre mostra o evento corrente com informações básicas sobre ele assim como uma opção para escolher eventos anteriores.</p>
+<blockquote>
+<p>
+
+
+> Written with <a href="[StackEdit](https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+).
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNzg4NjEyMzAyXX0=
+-->
