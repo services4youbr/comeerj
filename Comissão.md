@@ -18,7 +18,7 @@
 <td>texto</td>
 </tr>
 <tr>
-<td>descricao</td>
+<td>descrição</td>
 <td>texto</td>
 </tr>
 </tbody>
