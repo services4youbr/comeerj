@@ -50,7 +50,8 @@ uma inscrição consiste em:</p>
 <td>Caso não haja um histórico permitir que seja informado, caso o contrário preencher automaticamente</td>
 </tr>
 </tbody>
-</table><h2 id="ficha">Ficha</h2>
+</table><p>Ao escolher o tipo comissão aparecerá para o trabalhador as comissões disponíveis.</p>
+<h2 id="ficha">Ficha</h2>
 <p>Após realizada a inscrição será enviado uma ficha padrão para impressão e assinatura dos responsáveis. Essa ficha fica disponível na parte do menu inscrições e são recebidas por email.</p>
 <h2 id="múltiplas-inscrições">Múltiplas inscrições</h2>
 <p>Um usuário pode fazer inscrições para outro usuário, um evangelizador pode por exemplo inscrever sua turma.<br>
