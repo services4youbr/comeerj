@@ -72,6 +72,18 @@ Caso seja encontrada um cadastro prévio não permitir que seja cadastrado e diz
 <h2 id="exportar-inscrições">Exportar inscrições</h2>
 <p>Acessível apenas pelo perfil coordenador ou acima.</p>
 <p>Exporta em vários formatos as inscrições do polo.</p>
+<h2 id="relatórios">Relatórios</h2>
+<p>Acessível apenas pelo perfil coordenador ou acima.</p>
+<ol>
+<li>Atendimento fraterno, contêm informações médicas</li>
+<li>Relação de confraternistas, com nome, idade e nome para crachá</li>
+<li>relação de confraternistas por tipo, o mesmo do anterior, mas separado por faixas</li>
+<li>relação de trabalhadores, separados por comissão</li>
+<li>relação de pequenos companheiros</li>
+<li>relação de tarefeiros do bem</li>
+<li>relação de pais</li>
+<li>totais de participação</li>
+</ol>
 <blockquote>
 <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
 </blockquote>
