@@ -83,9 +83,5 @@
 </p></blockquote><blockquote>
 <p>Written with <a href="[StackEdit](https://stackedit.io/">StackEdit</a>.</p>
 </blockquote>
+<p>).</p>
 
-).
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAzMjk2ODc5NV19
--->
