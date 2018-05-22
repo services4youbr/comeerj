@@ -50,7 +50,8 @@ uma inscrição consiste em:</p>
 <td>Caso não haja um histórico permitir que seja informado, caso o contrário preencher automaticamente</td>
 </tr>
 </tbody>
-</table><h2 id="ficha">Ficha</h2>
+</table><p>Ao escolher o tipo comissão aparecerá para o trabalhador as comissões disponíveis.</p>
+<h2 id="ficha">Ficha</h2>
 <p>Após realizada a inscrição será enviado uma ficha padrão para impressão e assinatura dos responsáveis. Essa ficha fica disponível na parte do menu inscrições e são recebidas por email.</p>
 <h2 id="múltiplas-inscrições">Múltiplas inscrições</h2>
 <p>Um usuário pode fazer inscrições para outro usuário, um evangelizador pode por exemplo inscrever sua turma.<br>
@@ -60,6 +61,29 @@ Caso seja encontrada um cadastro prévio não permitir que seja cadastrado e diz
 <blockquote>
 <p>Verificar a possibilidade de pesquisar amigos do Facebook para vincular a essa inscrição.</p>
 </blockquote>
+<h2 id="inscrições-dos-polos">Inscrições dos polos</h2>
+<p>Acessível apenas pelo perfil coordenador ou acima.</p>
+<p>Aparece uma listagem com todas as inscrições do polo do coordenador, que poderão ser filtradas.</p>
+<h2 id="total-de-inscritos-no-polo">Total de inscritos no polo</h2>
+<p>Aparece um gráfico mostrando a distribuição de inscritos para o evento por polo</p>
+<h2 id="lançamento-de-pagamento">Lançamento de pagamento</h2>
+<p>Acessível apenas pelo perfil coordenador ou acima.</p>
+<p>Permite indicar e informar os pagamentos.</p>
+<h2 id="exportar-inscrições">Exportar inscrições</h2>
+<p>Acessível apenas pelo perfil coordenador ou acima.</p>
+<p>Exporta em vários formatos as inscrições do polo.</p>
+<h2 id="relatórios">Relatórios</h2>
+<p>Acessível apenas pelo perfil coordenador ou acima.</p>
+<ol>
+<li>Atendimento fraterno, contêm informações médicas</li>
+<li>Relação de confraternistas, com nome, idade e nome para crachá</li>
+<li>relação de confraternistas por tipo, o mesmo do anterior, mas separado por faixas</li>
+<li>relação de trabalhadores, separados por comissão</li>
+<li>relação de pequenos companheiros</li>
+<li>relação de tarefeiros do bem</li>
+<li>relação de pais</li>
+<li>totais de participação</li>
+</ol>
 <blockquote>
 <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
 </blockquote>
