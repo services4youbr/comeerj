@@ -61,6 +61,17 @@ Caso seja encontrada um cadastro prévio não permitir que seja cadastrado e diz
 <blockquote>
 <p>Verificar a possibilidade de pesquisar amigos do Facebook para vincular a essa inscrição.</p>
 </blockquote>
+<h2 id="inscrições-dos-polos">Inscrições dos polos</h2>
+<p>Acessível apenas pelo perfil coordenador ou acima.</p>
+<p>Aparece uma listagem com todas as inscrições do polo do coordenador, que poderão ser filtradas.</p>
+<h2 id="total-de-inscritos-no-polo">Total de inscritos no polo</h2>
+<p>Aparece um gráfico mostrando a distribuição de inscritos para o evento por polo</p>
+<h2 id="lançamento-de-pagamento">Lançamento de pagamento</h2>
+<p>Acessível apenas pelo perfil coordenador ou acima.</p>
+<p>Permite indicar e informar os pagamentos.</p>
+<h2 id="exportar-inscrições">Exportar inscrições</h2>
+<p>Acessível apenas pelo perfil coordenador ou acima.</p>
+<p>Exporta em vários formatos as inscrições do polo.</p>
 <blockquote>
 <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
 </blockquote>
