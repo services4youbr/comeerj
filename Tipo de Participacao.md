@@ -1,16 +1,15 @@
-# Tipo de participação
-Representa como os usuários podem participar do evento.(CRUD)
-Opções:
+<h1 id="tipo-de-participação">Tipo de participação</h1>
+<p>Representa como os usuários podem participar do evento.(CRUD)<br>
+Opções:</p>
+<ol>
+<li>Confraternistas</li>
+<li>Comissão</li>
+<li>Pais</li>
+<li>Pequenos Companheiros</li>
+<li>Tarefeiros do Bem</li>
+</ol>
+<p>Somente administradores podem dar manutenção.</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
 
- 1. Confraternistas
- 2. Comissão
- 3. Pais
- 4. Pequenos Companheiros
- 5. Tarefeiros do Bem
-
-Somente administradores podem dar manutenção.
-
-> Written with [StackEdit](https://stackedit.io/).
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYzNjc5MjY3MF19
--->
