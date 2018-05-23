@@ -32,6 +32,10 @@
 <td>Responsável</td>
 <td>Participante</td>
 </tr>
+<tr>
+<td>Genero</td>
+<td>Masculino, Feminino</td>
+</tr>
 </tbody>
 </table><h2 id="alojar">Alojar</h2>
 <p>O ato de alojar é vincular Participantes aos Alojamentos.<br>
