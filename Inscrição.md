@@ -83,6 +83,7 @@ Caso seja encontrada um cadastro prévio não permitir que seja cadastrado e diz
 <li>relação de tarefeiros do bem</li>
 <li>relação de pais</li>
 <li>totais de participação</li>
+<li>Lançamento de pagamento manual</li>
 </ol>
 <blockquote>
 <p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
