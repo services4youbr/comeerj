@@ -1,5 +1,7 @@
 # Sistema da COMEERJ (Confraternização de Mocidades Espíritas do Estado do Rio de Janeiro)
 
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/services4youbr/comeerj.svg?columns=all)](https://waffle.io/services4youbr/comeerj)
+
 ## Conteúdo
 - 1 - [Versionamento](#versionamento)
 
