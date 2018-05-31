@@ -2,9 +2,13 @@
 
 ## Conteúdo
 1 - [Versionamento](#versionamento)
-2 - [Contribuição](#contribuicao)
-3 - [Histórico](#historico)
-4 - [Licença](#licenca)
+
+2 - [Contribuição](#contribuição)
+
+3 - [Histórico](#histórico)
+
+4 - [Licença](#licença)
+
 5 - [Termo de Abertura do Projeto](#termo-de-abertura-do-projeto)
 
 
