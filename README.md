@@ -1,31 +1,31 @@
 # Sistema da COMEERJ (Confraternização de Mocidades Espíritas do Estado do Rio de Janeiro)
 
 ## Conteúdo
-1 - [Versionamento](#versionamento)
+- 1 - [Versionamento](#versionamento)
 
-2 - [Contribuição](#contribuição)
+- 2 - [Contribuição](#contribuição)
 
-3 - [Histórico](#histórico)
+- 3 - [Histórico](#histórico)
 
-4 - [Licença](#licença)
+- 4 - [Licença](#licença)
 
-5 - [Termo de Abertura do Projeto](#termo-de-abertura-do-projeto)
+- 5 - [Termo de Abertura do Projeto](#termo-de-abertura-do-projeto)
 
-  5.1 - [Justificativa](#justificativa)
+  - 5.1 - [Justificativa](#justificativa)
   
-  5.2 - [Objetivo do projeto](#objetivo-do-projeto)
+  - 5.2 - [Objetivo do projeto](#objetivo-do-projeto)
   
-  5.3 - [Alinhamento estratégico](#alinhamento-estratégico)
+  - 5.3 - [Alinhamento estratégico](#alinhamento-estratégico)
   
-  5.4 - [Responsabilidades e partes interessadas](#responsabilidades-e-partes-interessadas)
+  - 5.4 - [Responsabilidades e partes interessadas](#responsabilidades-e-partes-interessadas)
   
-  5.5 - [Escopo](#escopo)
+  - 5.5 - [Escopo](#escopo)
   
-  5.6 - [Premissas](#premissas)
+  - 5.6 - [Premissas](#premissas)
   
-  5.7 - [Restrições](#restrições)
+  - 5.7 - [Restrições](#restrições)
   
-  5.8 - [Riscos iniciais](#riscos-iniciais)
+  - 5.8 - [Riscos iniciais](#riscos-iniciais)
 
 
 ## Vesionamento
@@ -51,8 +51,11 @@ Veja os [releases](https://github.com/services4youbr/comeerj/releases) para deta
 # Termo de abertura do projeto
 
 **Projeto**: COMEERJ
+
 **Unidade demandante**: Desenvolvimento
+
 **Gestor do Projeto**: Rodrigo Dias de Freitas
+
 **Demandante**: Floriano Peixoto
 
 ## Justificativa
@@ -72,12 +75,12 @@ De acordo com as estratégias da empresa, esse projeto visa:
   - Novas tecnologias
 
 ## Responsabilidades e partes interessadas
-Todos os 4 sócios, Floriano Peixoto, Hugo Batista, Luiz Aureliano e Rodrigo Freitas participarão desse projeto, onde:
+Todos, Floriano Peixoto, Hugo Batista, Luiz Aureliano e Rodrigo Freitas participarão desse projeto, onde:
 
-Floriano será responsável por disponibilizar informações necessárias sobre o projeto, arquitetura e desenvolvimento backend.
-Hugo acompanhará todo o projeto e irá gerar um contrato de sistema/aplicativo.
-Luiz será responsável pelo desenvolvimento do Backend e auxiliará no gerenciamento do projeto.
-Rodrigo será responsável pelo design do sistema, desenvolvimento do Frontend e gerenciamento do projeto.
+- Floriano será responsável por disponibilizar informações necessárias sobre o projeto, arquitetura e desenvolvimento backend.
+- Hugo acompanhará todo o projeto e irá gerar um contrato de sistema/aplicativo.
+- Luiz será responsável pelo desenvolvimento do Backend e auxiliará no gerenciamento do projeto.
+- Rodrigo será responsável pelo design do sistema, desenvolvimento do Frontend e gerenciamento do projeto.
 
 ## Escopo
 - 5.1 - Login
