@@ -11,6 +11,22 @@
 
 5 - [Termo de Abertura do Projeto](#termo-de-abertura-do-projeto)
 
+  5.1 - [Justificativa](#justificativa)
+  
+  5.2 - [Objetivo do projeto](#objetivo-do-projeto)
+  
+  5.3 - [Alinhamento estratégico](#alinhamento-estratégico)
+  
+  5.4 - [Responsabilidades e partes interessadas](#responsabilidades-e-partes-interessadas)
+  
+  5.5 - [Escopo](#escopo)
+  
+  5.6 - [Premissas](#premissas)
+  
+  5.7 - [Restrições](#restrições)
+  
+  5.8 - [Riscos iniciais](#riscos-iniciais)
+
 
 ## Vesionamento
 
