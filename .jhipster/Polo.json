@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "inscricoes",
+            "otherEntityName": "inscricao",
+            "otherEntityRelationshipName": "polo"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numero",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reunir",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "localizacao",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180602012732",
+    "entityTableName": "polo",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "comeerj"
+}

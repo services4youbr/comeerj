@@ -1,0 +1,99 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myInscricaoLabel">Create or edit a Inscricao</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!inscricao.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="inscricao.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="field_nome"
+                [(ngModel)]="inscricao.nome" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tipoParticipacao">Tipo Participacao</label>
+            <select class="form-control" name="tipoParticipacao" [(ngModel)]="inscricao.tipoParticipacao" id="field_tipoParticipacao" >
+                <option value="CONFRATERNISTA">CONFRATERNISTA</option>
+                <option value="TRABALHADOR">TRABALHADOR</option>
+                <option value="PEQUENOS_COMPANHEIROS">PEQUENOS_COMPANHEIROS</option>
+                <option value="PAIS">PAIS</option>
+                <option value="TAREFEIROS_DO_BEM">TAREFEIROS_DO_BEM</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_idade">Idade</label>
+            <input type="number" class="form-control" name="idade" id="field_idade"
+                [(ngModel)]="inscricao.idade" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_numeroParticipacoes">Numero Participacoes</label>
+            <input type="number" class="form-control" name="numeroParticipacoes" id="field_numeroParticipacoes"
+                [(ngModel)]="inscricao.numeroParticipacoes" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_polo">Polo</label>
+            <select class="form-control" id="field_polo" name="polo" [(ngModel)]="inscricao.poloId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="poloOption.id" *ngFor="let poloOption of polos; trackBy: trackPoloById">{{poloOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_evento">Evento</label>
+            <select class="form-control" id="field_evento" name="evento" [(ngModel)]="inscricao.eventoId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="eventoOption.id" *ngFor="let eventoOption of eventos; trackBy: trackEventoById">{{eventoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_comissao">Comissao</label>
+            <select class="form-control" id="field_comissao" name="comissao" [(ngModel)]="inscricao.comissaoId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="comissaoOption.id" *ngFor="let comissaoOption of comissaos; trackBy: trackComissaoById">{{comissaoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_usuario">Usuario</label>
+            <select class="form-control" id="field_usuario" name="usuario" [(ngModel)]="inscricao.usuarioId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="usuarioOption.id" *ngFor="let usuarioOption of usuarios; trackBy: trackUsuarioById">{{usuarioOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_turma">Turma</label>
+            <select class="form-control" id="field_turma" name="turma" [(ngModel)]="inscricao.turmaId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="turmaOption.id" *ngFor="let turmaOption of turmas; trackBy: trackTurmaById">{{turmaOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_responsavel">Responsavel</label>
+            <select class="form-control" id="field_responsavel" name="responsavel" [(ngModel)]="inscricao.responsavelId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="turmaOption.id" *ngFor="let turmaOption of turmas; trackBy: trackTurmaById">{{turmaOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_alojamento">Alojamento</label>
+            <select class="form-control" id="field_alojamento" name="alojamento" [(ngModel)]="inscricao.alojamentoId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="alojamentoOption.id" *ngFor="let alojamentoOption of alojamentos; trackBy: trackAlojamentoById">{{alojamentoOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

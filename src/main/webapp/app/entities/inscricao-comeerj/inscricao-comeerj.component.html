@@ -1,0 +1,127 @@
+<div>
+    <h2>
+        <span>Inscricaos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-inscricao-comeerj" [routerLink]="['/', { outlets: { popup: ['inscricao-comeerj-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down" >
+            Create new Inscricao
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="inscricaos">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nome"><span>Nome</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tipoParticipacao"><span>Tipo Participacao</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="idade"><span>Idade</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numeroParticipacoes"><span>Numero Participacoes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="poloId"><span>Polo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="eventoId"><span>Evento</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="comissaoId"><span>Comissao</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="usuarioId"><span>Usuario</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="turmaId"><span>Turma</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="responsavelId"><span>Responsavel</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="alojamentoId"><span>Alojamento</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let inscricao of inscricaos ;trackBy: trackId">
+                <td><a [routerLink]="['../inscricao-comeerj', inscricao.id ]">{{inscricao.id}}</a></td>
+                <td>{{inscricao.nome}}</td>
+                <td>{{inscricao.tipoParticipacao}}</td>
+                <td>{{inscricao.idade}}</td>
+                <td>{{inscricao.numeroParticipacoes}}</td>
+                <td>
+                    <div *ngIf="inscricao.poloId">
+                        <a [routerLink]="['../polo-comeerj', inscricao.poloId  ]" >{{inscricao.poloId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="inscricao.eventoId">
+                        <a [routerLink]="['../evento-comeerj', inscricao.eventoId  ]" >{{inscricao.eventoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="inscricao.comissaoId">
+                        <a [routerLink]="['../comissao-comeerj', inscricao.comissaoId  ]" >{{inscricao.comissaoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="inscricao.usuarioId">
+                        <a [routerLink]="['../usuario-comeerj', inscricao.usuarioId  ]" >{{inscricao.usuarioId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="inscricao.turmaId">
+                        <a [routerLink]="['../turma-comeerj', inscricao.turmaId  ]" >{{inscricao.turmaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="inscricao.responsavelId">
+                        <a [routerLink]="['../turma-comeerj', inscricao.responsavelId  ]" >{{inscricao.responsavelId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="inscricao.alojamentoId">
+                        <a [routerLink]="['../alojamento-comeerj', inscricao.alojamentoId  ]" >{{inscricao.alojamentoId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../inscricao-comeerj', inscricao.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'inscricao-comeerj/'+ inscricao.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'inscricao-comeerj/'+ inscricao.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="inscricaos && inscricaos.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

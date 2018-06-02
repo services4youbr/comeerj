@@ -1,0 +1,46 @@
+
+<div *ngIf="evento">
+    <h2><span>Evento</span> {{evento.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Versao</span></dt>
+        <dd>
+            <span>{{evento.versao}}</span>
+        </dd>
+        <dt><span>Tema</span></dt>
+        <dd>
+            <span>{{evento.tema}}</span>
+        </dd>
+        <dt><span>Inicio Evento</span></dt>
+        <dd>
+            <span>{{evento.inicioEvento | date:'medium'}}</span>
+        </dd>
+        <dt><span>Fim Evento</span></dt>
+        <dd>
+            <span>{{evento.fimEvento | date:'medium'}}</span>
+        </dd>
+        <dt><span>Inicio Inscricoes</span></dt>
+        <dd>
+            <span>{{evento.inicioInscricoes | date:'medium'}}</span>
+        </dd>
+        <dt><span>Fim Inscricoes</span></dt>
+        <dd>
+            <span>{{evento.fimInscricoes | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'evento-comeerj/'+ evento.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -61,11 +61,11 @@ relationship OneToMany {
   FaixaEtaria{turmas} to Turma{faixaEtaria},
   Turma{inscritos} to Inscricao{turma},
   Turma{evangelizadores} to Inscricao{responsavel},
-  Alojmaneto{inscritos} to Inscricao{alojamento}
+  Alojamento{inscritos} to Inscricao{alojamento}
 }
 
 relationship OneToOne{
-	Alojmaneto{responsavel} to Inscricao{alojamentoResponsavel}
+	Alojamento{responsavel} to Inscricao{alojamentoResponsavel}
 }
 
 entity FaixaEtaria{

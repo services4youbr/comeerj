@@ -1,0 +1,38 @@
+
+<div *ngIf="polo">
+    <h2><span>Polo</span> {{polo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Nome</span></dt>
+        <dd>
+            <span>{{polo.nome}}</span>
+        </dd>
+        <dt><span>Numero</span></dt>
+        <dd>
+            <span>{{polo.numero}}</span>
+        </dd>
+        <dt><span>Reunir</span></dt>
+        <dd>
+            <span>{{polo.reunir}}</span>
+        </dd>
+        <dt><span>Localizacao</span></dt>
+        <dd>
+            <span>{{polo.localizacao}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'polo-comeerj/'+ polo.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

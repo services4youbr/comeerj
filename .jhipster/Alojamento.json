@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "responsavel",
+            "otherEntityName": "inscricao",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "alojamentoResponsavel"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "inscritos",
+            "otherEntityName": "inscricao",
+            "otherEntityRelationshipName": "alojamento"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sala",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "local",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "genero",
+            "fieldType": "Genero",
+            "fieldValues": "MASCULINO,FEMININO"
+        }
+    ],
+    "changelogDate": "20180602012735",
+    "entityTableName": "alojamento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "comeerj"
+}

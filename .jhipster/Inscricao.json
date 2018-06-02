@@ -1,0 +1,80 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "alojamentoResponsavel",
+            "otherEntityName": "alojamento",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "responsavel"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "polo",
+            "otherEntityName": "polo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "evento",
+            "otherEntityName": "evento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "comissao",
+            "otherEntityName": "comissao",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "turma",
+            "otherEntityName": "turma",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "responsavel",
+            "otherEntityName": "turma",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "alojamento",
+            "otherEntityName": "alojamento",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipoParticipacao",
+            "fieldType": "TipoParticicao",
+            "fieldValues": "CONFRATERNISTA,TRABALHADOR,PEQUENOS_COMPANHEIROS,PAIS,TAREFEIROS_DO_BEM"
+        },
+        {
+            "fieldName": "idade",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "numeroParticipacoes",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20180602012730",
+    "entityTableName": "inscricao",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "comeerj"
+}

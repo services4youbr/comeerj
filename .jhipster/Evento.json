@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "inscricoes",
+            "otherEntityName": "inscricao",
+            "otherEntityRelationshipName": "evento"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "versao",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tema",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inicioEvento",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fimEvento",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "inicioInscricoes",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fimInscricoes",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20180602012729",
+    "entityTableName": "evento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "comeerj"
+}

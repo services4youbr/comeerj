@@ -42,6 +42,22 @@ public class CacheConfiguration {
             cm.createCache(br.com.services4you.comeerj.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(br.com.services4you.comeerj.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(br.com.services4you.comeerj.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Usuario.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Usuario.class.getName() + ".inscricoes", jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Evento.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Evento.class.getName() + ".inscricoes", jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Inscricao.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Comissao.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Comissao.class.getName() + ".inscricoes", jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Polo.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Polo.class.getName() + ".inscricoes", jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.FaixaEtaria.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.FaixaEtaria.class.getName() + ".turmas", jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Turma.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Turma.class.getName() + ".inscritos", jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Turma.class.getName() + ".evangelizadores", jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Alojamento.class.getName(), jcacheConfiguration);
+            cm.createCache(br.com.services4you.comeerj.domain.Alojamento.class.getName() + ".inscritos", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

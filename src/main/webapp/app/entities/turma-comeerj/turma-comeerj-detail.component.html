@@ -1,0 +1,32 @@
+
+<div *ngIf="turma">
+    <h2><span>Turma</span> {{turma.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Nome</span></dt>
+        <dd>
+            <span>{{turma.nome}}</span>
+        </dd>
+        <dt><span>Faixa Etaria</span></dt>
+        <dd>
+            <div *ngIf="turma.faixaEtariaId">
+                <a [routerLink]="['/faixa-etaria-comeerj', turma.faixaEtariaId]">{{turma.faixaEtariaId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'turma-comeerj/'+ turma.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

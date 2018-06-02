@@ -1,0 +1,42 @@
+
+<div *ngIf="usuario">
+    <h2><span>Usuario</span> {{usuario.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>User Id</span></dt>
+        <dd>
+            <span>{{usuario.userId}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{usuario.name}}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{usuario.email}}</span>
+        </dd>
+        <dt><span>Perfil</span></dt>
+        <dd>
+            <span>{{usuario.perfil}}</span>
+        </dd>
+        <dt><span>Genero</span></dt>
+        <dd>
+            <span>{{usuario.genero}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'usuario-comeerj/'+ usuario.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

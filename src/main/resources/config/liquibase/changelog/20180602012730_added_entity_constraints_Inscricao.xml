@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Inscricao.
+    -->
+    <changeSet id="20180602012730-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="polo_id"
+                                 baseTableName="inscricao"
+                                 constraintName="fk_inscricao_polo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="polo"/>
+
+        <addForeignKeyConstraint baseColumnNames="evento_id"
+                                 baseTableName="inscricao"
+                                 constraintName="fk_inscricao_evento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="evento"/>
+
+        <addForeignKeyConstraint baseColumnNames="comissao_id"
+                                 baseTableName="inscricao"
+                                 constraintName="fk_inscricao_comissao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comissao"/>
+
+        <addForeignKeyConstraint baseColumnNames="usuario_id"
+                                 baseTableName="inscricao"
+                                 constraintName="fk_inscricao_usuario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"/>
+
+        <addForeignKeyConstraint baseColumnNames="turma_id"
+                                 baseTableName="inscricao"
+                                 constraintName="fk_inscricao_turma_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="turma"/>
+
+        <addForeignKeyConstraint baseColumnNames="responsavel_id"
+                                 baseTableName="inscricao"
+                                 constraintName="fk_inscricao_responsavel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="turma"/>
+
+        <addForeignKeyConstraint baseColumnNames="alojamento_id"
+                                 baseTableName="inscricao"
+                                 constraintName="fk_inscricao_alojamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alojamento"/>
+
+    </changeSet>
+</databaseChangeLog>

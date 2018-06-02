@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "inscritos",
+            "otherEntityName": "inscricao",
+            "otherEntityRelationshipName": "turma"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "evangelizadores",
+            "otherEntityName": "inscricao",
+            "otherEntityRelationshipName": "responsavel"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "faixaEtaria",
+            "otherEntityName": "faixaEtaria",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180602012734",
+    "entityTableName": "turma",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "comeerj"
+}
