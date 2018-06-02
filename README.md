@@ -1,5 +1,8 @@
 
 # comeerj
+
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/services4youbr/comeerj.svg?columns=all)](https://waffle.io/services4youbr/comeerj)
+
 This application was generated using JHipster 4.14.4, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.4](http://www.jhipster.tech/documentation-archive/v4.14.4).
 
 ## Development
@@ -184,8 +187,6 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [Doing API-First development]: http://www.jhipster.tech/documentation-archive/v4.14.4/doing-api-first-development/
 
 # Sistema da COMEERJ (Confraternização de Mocidades Espíritas do Estado do Rio de Janeiro)
-
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/services4youbr/comeerj.svg?columns=all)](https://waffle.io/services4youbr/comeerj)
 
 ## Conteúdo
 - 1 - [Versionamento](#versionamento)
