@@ -14,6 +14,10 @@
 <td>Numero</td>
 </tr>
 <tr>
+<td>coordenacao</td>
+<td>texto</td>
+</tr>
+<tr>
 <td>nome</td>
 <td>texto</td>
 </tr>
