@@ -1,0 +1,101 @@
+entity Usuario {
+  id Long,
+  userId Long,
+  name String,
+  email String,
+  perfil Perfil,
+  genero Genero
+}
+
+enum Perfil{
+  ADMINISTRADOR, COORDENADOR, USUARIO
+}
+
+enum Genero{
+	MASCULINO, FEMININO
+}
+
+entity Evento{
+  id Long,
+  versao String,
+  tema String,
+  inicioEvento Instant,
+  fimEvento Instant,
+  inicioInscricoes Instant,
+  fimInscricoes Instant
+}
+
+entity Inscricao{
+  id 	Long,
+  nome String,
+  tipoParticipacao TipoParticicao,
+  idade Long,
+  numeroParticipacoes Long
+}
+
+entity Comissao{
+  id Long,
+  comissao String,
+  nome String,
+  descricao String
+}
+
+enum TipoParticicao{
+	CONFRATERNISTA, TRABALHADOR, PEQUENOS_COMPANHEIROS, PAIS, TAREFEIROS_DO_BEM
+}
+
+entity Polo{
+  id Long,
+  nome String,
+  numero String,
+  reunir String,
+  localizacao String
+}
+
+relationship OneToMany {
+  Polo{inscricoes} to Inscricao{polo},
+  Evento{inscricoes} to Inscricao{evento},
+  Comissao{inscricoes} to Inscricao{comissao},
+  Usuario{inscricoes} to Inscricao{usuario},
+  Usuario{inscricoes} to Inscricao{usuario},
+  FaixaEtaria{turmas} to Turma{faixaEtaria},
+  Turma{inscritos} to Inscricao{turma},
+  Turma{evangelizadores} to Inscricao{responsavel},
+  Alojmaneto{inscritos} to Inscricao{alojamento}
+}
+
+relationship OneToOne{
+	Alojmaneto{responsavel} to Inscricao{alojamentoResponsavel}
+}
+
+entity FaixaEtaria{
+  id Long,
+  nome String,
+  idadeMin Long,
+  idadeMaxima Long,
+  descricao String
+}
+
+entity Turma{
+  id Long,
+  nome String
+}
+
+entity Alojamento{
+  id Long,
+  nome String,
+  sala String,
+  local String,
+  genero Genero
+}
+
+
+// Set pagination options
+paginate * with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+angularSuffix * with comeerj
