@@ -5,7 +5,6 @@ import br.com.services4you.comeerj.ComeerjApp;
 import br.com.services4you.comeerj.domain.Inscricao;
 import br.com.services4you.comeerj.repository.InscricaoRepository;
 import br.com.services4you.comeerj.service.InscricaoService;
-import br.com.services4you.comeerj.repository.search.InscricaoSearchRepository;
 import br.com.services4you.comeerj.service.dto.InscricaoDTO;
 import br.com.services4you.comeerj.service.mapper.InscricaoMapper;
 import br.com.services4you.comeerj.web.rest.errors.ExceptionTranslator;
@@ -65,9 +64,6 @@ public class InscricaoResourceIntTest {
     private InscricaoService inscricaoService;
 
     @Autowired
-    private InscricaoSearchRepository inscricaoSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -111,7 +107,6 @@ public class InscricaoResourceIntTest {
 
     @Before
     public void initTest() {
-        inscricaoSearchRepository.deleteAll();
         inscricao = createEntity(em);
     }
 
@@ -135,10 +130,6 @@ public class InscricaoResourceIntTest {
         assertThat(testInscricao.getTipoParticipacao()).isEqualTo(DEFAULT_TIPO_PARTICIPACAO);
         assertThat(testInscricao.getIdade()).isEqualTo(DEFAULT_IDADE);
         assertThat(testInscricao.getNumeroParticipacoes()).isEqualTo(DEFAULT_NUMERO_PARTICIPACOES);
-
-        // Validate the Inscricao in Elasticsearch
-        Inscricao inscricaoEs = inscricaoSearchRepository.findOne(testInscricao.getId());
-        assertThat(inscricaoEs).isEqualToIgnoringGivenFields(testInscricao);
     }
 
     @Test
@@ -208,7 +199,6 @@ public class InscricaoResourceIntTest {
     public void updateInscricao() throws Exception {
         // Initialize the database
         inscricaoRepository.saveAndFlush(inscricao);
-        inscricaoSearchRepository.save(inscricao);
         int databaseSizeBeforeUpdate = inscricaoRepository.findAll().size();
 
         // Update the inscricao
@@ -235,10 +225,6 @@ public class InscricaoResourceIntTest {
         assertThat(testInscricao.getTipoParticipacao()).isEqualTo(UPDATED_TIPO_PARTICIPACAO);
         assertThat(testInscricao.getIdade()).isEqualTo(UPDATED_IDADE);
         assertThat(testInscricao.getNumeroParticipacoes()).isEqualTo(UPDATED_NUMERO_PARTICIPACOES);
-
-        // Validate the Inscricao in Elasticsearch
-        Inscricao inscricaoEs = inscricaoSearchRepository.findOne(testInscricao.getId());
-        assertThat(inscricaoEs).isEqualToIgnoringGivenFields(testInscricao);
     }
 
     @Test
@@ -265,7 +251,6 @@ public class InscricaoResourceIntTest {
     public void deleteInscricao() throws Exception {
         // Initialize the database
         inscricaoRepository.saveAndFlush(inscricao);
-        inscricaoSearchRepository.save(inscricao);
         int databaseSizeBeforeDelete = inscricaoRepository.findAll().size();
 
         // Get the inscricao
@@ -273,31 +258,9 @@ public class InscricaoResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean inscricaoExistsInEs = inscricaoSearchRepository.exists(inscricao.getId());
-        assertThat(inscricaoExistsInEs).isFalse();
-
         // Validate the database is empty
         List<Inscricao> inscricaoList = inscricaoRepository.findAll();
         assertThat(inscricaoList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchInscricao() throws Exception {
-        // Initialize the database
-        inscricaoRepository.saveAndFlush(inscricao);
-        inscricaoSearchRepository.save(inscricao);
-
-        // Search the inscricao
-        restInscricaoMockMvc.perform(get("/api/_search/inscricaos?query=id:" + inscricao.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(inscricao.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-            .andExpect(jsonPath("$.[*].tipoParticipacao").value(hasItem(DEFAULT_TIPO_PARTICIPACAO.toString())))
-            .andExpect(jsonPath("$.[*].idade").value(hasItem(DEFAULT_IDADE.intValue())))
-            .andExpect(jsonPath("$.[*].numeroParticipacoes").value(hasItem(DEFAULT_NUMERO_PARTICIPACOES.intValue())));
     }
 
     @Test

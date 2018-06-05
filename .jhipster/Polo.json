@@ -26,7 +26,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180602012732",
+    "changelogDate": "20180605023025",
     "entityTableName": "polo",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -33,7 +33,7 @@ export const faixaEtariaRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'FaixaEtarias'
+            pageTitle: 'comeerjApp.faixaEtaria.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -41,7 +41,7 @@ export const faixaEtariaRoute: Routes = [
         component: FaixaEtariaComeerjDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'FaixaEtarias'
+            pageTitle: 'comeerjApp.faixaEtaria.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -53,7 +53,7 @@ export const faixaEtariaPopupRoute: Routes = [
         component: FaixaEtariaComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'FaixaEtarias'
+            pageTitle: 'comeerjApp.faixaEtaria.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -63,7 +63,7 @@ export const faixaEtariaPopupRoute: Routes = [
         component: FaixaEtariaComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'FaixaEtarias'
+            pageTitle: 'comeerjApp.faixaEtaria.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -73,7 +73,7 @@ export const faixaEtariaPopupRoute: Routes = [
         component: FaixaEtariaComeerjDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'FaixaEtarias'
+            pageTitle: 'comeerjApp.faixaEtaria.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

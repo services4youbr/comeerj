@@ -1,35 +1,35 @@
 
 <div *ngIf="usuario">
-    <h2><span>Usuario</span> {{usuario.id}}</h2>
+    <h2><span jhiTranslate="comeerjApp.usuario.detail.title">Usuario</span> {{usuario.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span>User Id</span></dt>
+        <dt><span jhiTranslate="comeerjApp.usuario.userId">User Id</span></dt>
         <dd>
             <span>{{usuario.userId}}</span>
         </dd>
-        <dt><span>Name</span></dt>
+        <dt><span jhiTranslate="comeerjApp.usuario.name">Name</span></dt>
         <dd>
             <span>{{usuario.name}}</span>
         </dd>
-        <dt><span>Email</span></dt>
+        <dt><span jhiTranslate="comeerjApp.usuario.email">Email</span></dt>
         <dd>
             <span>{{usuario.email}}</span>
         </dd>
-        <dt><span>Perfil</span></dt>
+        <dt><span jhiTranslate="comeerjApp.usuario.perfil">Perfil</span></dt>
         <dd>
-            <span>{{usuario.perfil}}</span>
+            <span jhiTranslate="{{'comeerjApp.Perfil.' + usuario.perfil}}">{{usuario.perfil}}</span>
         </dd>
-        <dt><span>Genero</span></dt>
+        <dt><span jhiTranslate="comeerjApp.usuario.genero">Genero</span></dt>
         <dd>
-            <span>{{usuario.genero}}</span>
+            <span jhiTranslate="{{'comeerjApp.Genero.' + usuario.genero}}">{{usuario.genero}}</span>
         </dd>
     </dl>
 
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
     <button type="button"
@@ -37,6 +37,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
 </div>

@@ -12,7 +12,6 @@ export type EntityResponseType = HttpResponse<PoloComeerj>;
 export class PoloComeerjService {
 
     private resourceUrl =  SERVER_API_URL + 'api/polos';
-    private resourceSearchUrl = SERVER_API_URL + 'api/_search/polos';
 
     constructor(private http: HttpClient) { }
 
@@ -41,12 +40,6 @@ export class PoloComeerjService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
-    }
-
-    search(req?: any): Observable<HttpResponse<PoloComeerj[]>> {
-        const options = createRequestOption(req);
-        return this.http.get<PoloComeerj[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<PoloComeerj[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

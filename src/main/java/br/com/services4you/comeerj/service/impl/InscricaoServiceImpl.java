@@ -3,7 +3,6 @@ package br.com.services4you.comeerj.service.impl;
 import br.com.services4you.comeerj.service.InscricaoService;
 import br.com.services4you.comeerj.domain.Inscricao;
 import br.com.services4you.comeerj.repository.InscricaoRepository;
-import br.com.services4you.comeerj.repository.search.InscricaoSearchRepository;
 import br.com.services4you.comeerj.service.dto.InscricaoDTO;
 import br.com.services4you.comeerj.service.mapper.InscricaoMapper;
 import org.slf4j.Logger;
@@ -18,8 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
-
 /**
  * Service Implementation for managing Inscricao.
  */
@@ -33,12 +30,9 @@ public class InscricaoServiceImpl implements InscricaoService {
 
     private final InscricaoMapper inscricaoMapper;
 
-    private final InscricaoSearchRepository inscricaoSearchRepository;
-
-    public InscricaoServiceImpl(InscricaoRepository inscricaoRepository, InscricaoMapper inscricaoMapper, InscricaoSearchRepository inscricaoSearchRepository) {
+    public InscricaoServiceImpl(InscricaoRepository inscricaoRepository, InscricaoMapper inscricaoMapper) {
         this.inscricaoRepository = inscricaoRepository;
         this.inscricaoMapper = inscricaoMapper;
-        this.inscricaoSearchRepository = inscricaoSearchRepository;
     }
 
     /**
@@ -52,9 +46,7 @@ public class InscricaoServiceImpl implements InscricaoService {
         log.debug("Request to save Inscricao : {}", inscricaoDTO);
         Inscricao inscricao = inscricaoMapper.toEntity(inscricaoDTO);
         inscricao = inscricaoRepository.save(inscricao);
-        InscricaoDTO result = inscricaoMapper.toDto(inscricao);
-        inscricaoSearchRepository.save(inscricao);
-        return result;
+        return inscricaoMapper.toDto(inscricao);
     }
 
     /**
@@ -109,21 +101,5 @@ public class InscricaoServiceImpl implements InscricaoService {
     public void delete(Long id) {
         log.debug("Request to delete Inscricao : {}", id);
         inscricaoRepository.delete(id);
-        inscricaoSearchRepository.delete(id);
-    }
-
-    /**
-     * Search for the inscricao corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<InscricaoDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Inscricaos for query {}", query);
-        Page<Inscricao> result = inscricaoSearchRepository.search(queryStringQuery(query), pageable);
-        return result.map(inscricaoMapper::toDto);
     }
 }

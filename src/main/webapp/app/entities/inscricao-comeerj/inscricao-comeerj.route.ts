@@ -33,7 +33,7 @@ export const inscricaoRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Inscricaos'
+            pageTitle: 'comeerjApp.inscricao.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -41,7 +41,7 @@ export const inscricaoRoute: Routes = [
         component: InscricaoComeerjDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Inscricaos'
+            pageTitle: 'comeerjApp.inscricao.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -53,7 +53,7 @@ export const inscricaoPopupRoute: Routes = [
         component: InscricaoComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Inscricaos'
+            pageTitle: 'comeerjApp.inscricao.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -63,7 +63,7 @@ export const inscricaoPopupRoute: Routes = [
         component: InscricaoComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Inscricaos'
+            pageTitle: 'comeerjApp.inscricao.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -73,7 +73,7 @@ export const inscricaoPopupRoute: Routes = [
         component: InscricaoComeerjDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Inscricaos'
+            pageTitle: 'comeerjApp.inscricao.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

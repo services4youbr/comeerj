@@ -33,7 +33,7 @@ export const usuarioRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Usuarios'
+            pageTitle: 'comeerjApp.usuario.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -41,7 +41,7 @@ export const usuarioRoute: Routes = [
         component: UsuarioComeerjDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Usuarios'
+            pageTitle: 'comeerjApp.usuario.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -53,7 +53,7 @@ export const usuarioPopupRoute: Routes = [
         component: UsuarioComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Usuarios'
+            pageTitle: 'comeerjApp.usuario.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -63,7 +63,7 @@ export const usuarioPopupRoute: Routes = [
         component: UsuarioComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Usuarios'
+            pageTitle: 'comeerjApp.usuario.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -73,7 +73,7 @@ export const usuarioPopupRoute: Routes = [
         component: UsuarioComeerjDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Usuarios'
+            pageTitle: 'comeerjApp.usuario.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

@@ -12,7 +12,6 @@ export type EntityResponseType = HttpResponse<TurmaComeerj>;
 export class TurmaComeerjService {
 
     private resourceUrl =  SERVER_API_URL + 'api/turmas';
-    private resourceSearchUrl = SERVER_API_URL + 'api/_search/turmas';
 
     constructor(private http: HttpClient) { }
 
@@ -41,12 +40,6 @@ export class TurmaComeerjService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
-    }
-
-    search(req?: any): Observable<HttpResponse<TurmaComeerj[]>> {
-        const options = createRequestOption(req);
-        return this.http.get<TurmaComeerj[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<TurmaComeerj[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

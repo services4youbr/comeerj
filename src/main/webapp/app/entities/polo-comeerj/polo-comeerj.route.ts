@@ -33,7 +33,7 @@ export const poloRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Polos'
+            pageTitle: 'comeerjApp.polo.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -41,7 +41,7 @@ export const poloRoute: Routes = [
         component: PoloComeerjDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Polos'
+            pageTitle: 'comeerjApp.polo.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -53,7 +53,7 @@ export const poloPopupRoute: Routes = [
         component: PoloComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Polos'
+            pageTitle: 'comeerjApp.polo.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -63,7 +63,7 @@ export const poloPopupRoute: Routes = [
         component: PoloComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Polos'
+            pageTitle: 'comeerjApp.polo.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -73,7 +73,7 @@ export const poloPopupRoute: Routes = [
         component: PoloComeerjDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Polos'
+            pageTitle: 'comeerjApp.polo.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

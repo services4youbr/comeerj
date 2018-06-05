@@ -26,7 +26,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180602012734",
+    "changelogDate": "20180605023027",
     "entityTableName": "turma",
     "dto": "mapstruct",
     "pagination": "pagination",

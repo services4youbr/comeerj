@@ -1,34 +1,34 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myPoloLabel">Create or edit a Polo</h4>
+        <h4 class="modal-title" id="myPoloLabel" jhiTranslate="comeerjApp.polo.home.createOrEditLabel">Create or edit a Polo</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!polo.id">
-            <label for="id">ID</label>
+            <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="polo.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_nome">Nome</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.polo.nome" for="field_nome">Nome</label>
             <input type="text" class="form-control" name="nome" id="field_nome"
                 [(ngModel)]="polo.nome" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_numero">Numero</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.polo.numero" for="field_numero">Numero</label>
             <input type="text" class="form-control" name="numero" id="field_numero"
                 [(ngModel)]="polo.numero" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_reunir">Reunir</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.polo.reunir" for="field_reunir">Reunir</label>
             <input type="text" class="form-control" name="reunir" id="field_reunir"
                 [(ngModel)]="polo.reunir" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_localizacao">Localizacao</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.polo.localizacao" for="field_localizacao">Localizacao</label>
             <input type="text" class="form-control" name="localizacao" id="field_localizacao"
                 [(ngModel)]="polo.localizacao" />
         </div>
@@ -36,10 +36,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>
 </form>

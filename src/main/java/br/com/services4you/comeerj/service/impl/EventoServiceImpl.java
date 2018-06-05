@@ -3,7 +3,6 @@ package br.com.services4you.comeerj.service.impl;
 import br.com.services4you.comeerj.service.EventoService;
 import br.com.services4you.comeerj.domain.Evento;
 import br.com.services4you.comeerj.repository.EventoRepository;
-import br.com.services4you.comeerj.repository.search.EventoSearchRepository;
 import br.com.services4you.comeerj.service.dto.EventoDTO;
 import br.com.services4you.comeerj.service.mapper.EventoMapper;
 import org.slf4j.Logger;
@@ -13,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Evento.
@@ -29,12 +26,9 @@ public class EventoServiceImpl implements EventoService {
 
     private final EventoMapper eventoMapper;
 
-    private final EventoSearchRepository eventoSearchRepository;
-
-    public EventoServiceImpl(EventoRepository eventoRepository, EventoMapper eventoMapper, EventoSearchRepository eventoSearchRepository) {
+    public EventoServiceImpl(EventoRepository eventoRepository, EventoMapper eventoMapper) {
         this.eventoRepository = eventoRepository;
         this.eventoMapper = eventoMapper;
-        this.eventoSearchRepository = eventoSearchRepository;
     }
 
     /**
@@ -48,9 +42,7 @@ public class EventoServiceImpl implements EventoService {
         log.debug("Request to save Evento : {}", eventoDTO);
         Evento evento = eventoMapper.toEntity(eventoDTO);
         evento = eventoRepository.save(evento);
-        EventoDTO result = eventoMapper.toDto(evento);
-        eventoSearchRepository.save(evento);
-        return result;
+        return eventoMapper.toDto(evento);
     }
 
     /**
@@ -90,21 +82,5 @@ public class EventoServiceImpl implements EventoService {
     public void delete(Long id) {
         log.debug("Request to delete Evento : {}", id);
         eventoRepository.delete(id);
-        eventoSearchRepository.delete(id);
-    }
-
-    /**
-     * Search for the evento corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<EventoDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Eventos for query {}", query);
-        Page<Evento> result = eventoSearchRepository.search(queryStringQuery(query), pageable);
-        return result.map(eventoMapper::toDto);
     }
 }

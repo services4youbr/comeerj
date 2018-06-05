@@ -1,8 +1,4 @@
-
 # comeerj
-
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/services4youbr/comeerj.svg?columns=all)](https://waffle.io/services4youbr/comeerj)
-
 This application was generated using JHipster 4.14.4, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.4](http://www.jhipster.tech/documentation-archive/v4.14.4).
 
 ## Development
@@ -33,6 +29,70 @@ specifying a newer version in [package.json](package.json). You can also run `ya
 Add the `help` flag on any command to see how you can use it. For example, `yarn help update`.
 
 The `yarn run` command will list all of the scripts available to run for this project.
+
+## OAuth 2.0 / OpenID Connect
+
+Congratulations! You've selected an excellent way to secure your JHipster application. If you're not sure what OAuth and OpenID Connect (OIDC) are, please see [What the Heck is OAuth?](https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth)
+
+To log in to your app, you'll need to have [Keycloak](https://keycloak.org) up and running. The JHipster Team has created a Docker container for you that has the default users and roles. Start Keycloak using the following command.
+
+```
+docker-compose -f src/main/docker/keycloak.yml up
+```
+
+The security settings in `src/main/resources/application.yml` are configured for this image.
+
+```yaml
+security:
+    basic:
+        enabled: false
+    oauth2:
+        client:
+            accessTokenUri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/token
+            userAuthorizationUri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/auth
+            clientId: web_app
+            clientSecret: web_app
+            clientAuthenticationScheme: form
+            scope: openid profile email
+        resource:
+            userInfoUri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
+            tokenInfoUri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/token/introspect
+            preferTokenInfo: false
+```
+
+### Okta
+
+If you'd like to use Okta instead of Keycloak, you'll need to change a few things. First, you'll need to create a free developer account at <https://developer.okta.com/signup/>. After doing so, you'll get your own Okta domain, that has a name like `https://dev-123456.oktapreview.com`.
+
+Modify `src/main/resources/application.yml` to use your Okta settings.
+
+```yaml
+security:
+    basic:
+        enabled: false
+    oauth2:
+        client:
+            accessTokenUri: https://{yourOktaDomain}.com/oauth2/default/v1/token
+            userAuthorizationUri: https://{yourOktaDomain}.com/oauth2/default/v1/authorize
+            clientId: {clientId}
+            clientSecret: {clientSecret}
+            clientAuthenticationScheme: form
+            scope: openid profile email
+        resource:
+            userInfoUri: https://{yourOktaDomain}.com/oauth2/default/v1/userinfo
+            tokenInfoUri: https://{yourOktaDomain}.com/oauth2/default/v1/introspect
+            preferTokenInfo: false
+```
+
+Create an OIDC App in Okta to get a `{clientId}` and `{clientSecret}`. To do this, log in to your Okta Developer account and navigate to **Applications** > **Add Application**. Click **Web** and click the **Next** button. Give the app a name you’ll remember, specify `http://localhost:8080` as a Base URI, and `http://localhost:8080/login` as a Login Redirect URI. Click **Done** and copy the client ID and secret into your `application.yml` file.
+
+> **TIP:** If you want to use the [Ionic Module for JHipster](https://www.npmjs.com/package/generator-jhipster-ionic), you'll need to add `http://localhost:8100` as a **Login redirect URI** as well.
+
+Create a `ROLE_ADMIN` and `ROLE_USER` group and add users into them. Create a user (e.g., "admin@jhipster.org" with password "Java is hip in 2017!"). Modify e2e tests to use this account when running integration tests. You'll need to change credentials in `src/test/javascript/e2e/account/account.spec.ts` and `src/test/javascript/e2e/admin/administration.spec.ts`.
+
+Navigate to **API** > **Authorization Servers**, click the **Authorization Servers** tab and edit the default one. Click the **Claims** tab and **Add Claim**. Name it "groups" or "roles", and include it in the ID Token. Set the value type to "Groups" and set the filter to be a Regex of `.*`.
+
+After making these changes, you should be good to go! If you have any issues, please post them to [Stack Overflow](https://stackoverflow.com/questions/tagged/jhipster). Make sure to tag your question with "jhipster" and "okta".
 
 ### Service workers
 
@@ -90,17 +150,6 @@ will generate few files:
     create src/main/webapp/app/my-component/my-component.component.ts
     update src/main/webapp/app/app.module.ts
 
-### Doing API-First development using swagger-codegen
-
-[Swagger-Codegen]() is configured for this application. You can generate API code from the `src/main/resources/swagger/api.yml` definition file by running:
-```bash
-./mvnw generate-sources
-```
-Then implements the generated interfaces with `@RestController` classes.
-
-To edit the `api.yml` definition file, you can use a tool such as [Swagger-Editor](). Start a local instance of the swagger-editor using docker by running: `docker-compose -f src/main/docker/swagger-editor.yml up -d`. The editor will then be reachable at [http://localhost:7742](http://localhost:7742).
-
-Refer to [Doing API-First development][] for more details.
 
 ## Building for production
 
@@ -165,7 +214,6 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [JHipster 4.14.4 archive]: http://www.jhipster.tech/documentation-archive/v4.14.4
 
 [Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.14.4/development/
-[Service Discovery and Configuration with the JHipster-Registry]: http://www.jhipster.tech/documentation-archive/v4.14.4/microservices-architecture/#jhipster-registry
 [Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.14.4/docker-compose
 [Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.14.4/production/
 [Running tests page]: http://www.jhipster.tech/documentation-archive/v4.14.4/running-tests/
@@ -182,136 +230,3 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [Protractor]: https://angular.github.io/protractor/
 [Leaflet]: http://leafletjs.com/
 [DefinitelyTyped]: http://definitelytyped.org/
-[Swagger-Codegen]: https://github.com/swagger-api/swagger-codegen
-[Swagger-Editor]: http://editor.swagger.io
-[Doing API-First development]: http://www.jhipster.tech/documentation-archive/v4.14.4/doing-api-first-development/
-
-# Sistema da COMEERJ (Confraternização de Mocidades Espíritas do Estado do Rio de Janeiro)
-
-## Conteúdo
-- 1 - [Versionamento](#versionamento)
-
-- 2 - [Contribuição](#contribuição)
-
-- 3 - [Histórico](#histórico)
-
-- 4 - [Licença](#licença)
-
-- 5 - [Termo de Abertura do Projeto](#termo-de-abertura-do-projeto)
-
-  - 5.1 - [Justificativa](#justificativa)
-  
-  - 5.2 - [Objetivo do projeto](#objetivo-do-projeto)
-  
-  - 5.3 - [Alinhamento estratégico](#alinhamento-estratégico)
-  
-  - 5.4 - [Responsabilidades e partes interessadas](#responsabilidades-e-partes-interessadas)
-  
-  - 5.5 - [Escopo](#escopo)
-  
-  - 5.6 - [Premissas](#premissas)
-  
-  - 5.7 - [Restrições](#restrições)
-  
-  - 5.8 - [Riscos iniciais](#riscos-iniciais)
-
-
-## Vesionamento
-
-Para uma melhor organização dos releases, nós seguimos os guidelines da [Semantic Versioning 2.0.0](http://semver.org/)
-
-## Contribuição
-
-Localize nas [nossas tarefas](https://github.com/services4youbr/comeerj/issues) os nossos próximos passos no projeto
-<br>
-Quer contribuir? Siga [nossas recomendações](https://github.com/services4youbr/comeerj/blob/master/CONTRIBUTING.md)
-
-[![Throughput Graph](https://graphs.waffle.io/services4youbr/comeerj/throughput.svg)](https://waffle.io/services4youbr/comeerj/metrics/throughput)
-
-## Histórico
-
-Veja os [releases](https://github.com/services4youbr/comeerj/releases) para detalhamento das modificações
-
-## Licença
-
-[MIT License](https://github.com/services4youbr/comeerj/blob/master/LICENSE)
-
-# Termo de abertura do projeto
-
-**Projeto**: COMEERJ
-
-**Unidade demandante**: Desenvolvimento
-
-**Gestor do Projeto**: Rodrigo Dias de Freitas
-
-**Demandante**: Floriano Peixoto
-
-## Justificativa
-A COMEERJ é um evento anual que acontece em diversos locais no estado do Rio de Janeiro mas que é gerenciada em vários momentos do ano, visando sempre o evento. Por não haver ferramentas no mercado que faça um gerenciamento eficaz para coordenação, existe essa necessidade de desenvolvimento de uma ferramenta para o gerenciamento total do evento. Hoje já existe um sistema que está defasado e que não atende as necessidades da coordenação.
-
-## Objetivo do projeto
-Os objetivos desse projeto são:
-
-  - Criar uma ferramenta de gestão do evento
-  - Aprimorar o sistema que já existe
-
-## Alinhamento estratégico
-De acordo com as estratégias da empresa, esse projeto visa:
-
-  - Aprendizado
-  - Gestão de projetos
-  - Novas tecnologias
-
-## Responsabilidades e partes interessadas
-Todos, Floriano Peixoto, Hugo Batista, Luiz Aureliano e Rodrigo Freitas participarão desse projeto, onde:
-
-- Floriano será responsável por disponibilizar informações necessárias sobre o projeto, arquitetura e desenvolvimento backend.
-- Hugo acompanhará todo o projeto e irá gerar um contrato de sistema/aplicativo.
-- Luiz será responsável pelo desenvolvimento do Backend e auxiliará no gerenciamento do projeto.
-- Rodrigo será responsável pelo design do sistema, desenvolvimento do Frontend e gerenciamento do projeto.
-
-## Escopo
-- 5.1 - Login
-    - 5.1.1 - Login via formulário
-    - 5.1.2 - Login via redes sociais
-- 5.2 - Cadastro
-    - 5.2.1 - Cadastro de dados básicos
-    - 5.2.2 - Manutenção de permissão via perfil
-    - 5.2.3 - Envio de email com informações após cadastro
-    - 5.2.4 - Esqueci senha
-    - 5.2.5 - Alterar senha
-- 5.3 - Manutenção de evento
-    - 5.3.1 - CRUD Evento
-    - 5.3.2 - Envio de email informando que novo evento foi criado com as datas
-    - 5.3.3 - Envio de email para todos os inscritos nos eventos.
-    - 5.3.4 - Envio de mensagem em rede social para quem vinculou conta com as mesmas informações
-- 5.4 - Inscrição
-    - 5.4.1 - Inscrever-se em um evento durante o período de inscrições
-    - 5.4.2 - Permitir que coordenadores possam alterar as inscrições ou realizar novas após o período de inscrições
-    - 5.4.3 - Permitir alteração de inscrições
-    - 5.4.4 - Enviar email para os coordenadores do polo ou de comissões  quando alguem se inscrever
-- 5.5 - Relatórios
-    - 5.5.1 - Relatórios com diversas informações disponíveis para todos os coordenadores
-- 5.6 - Turmas de evangelização
-    - 5.6.1 - Manutenção de turmas e vinculação de jovens e trabalhadores nas turmas
-- 5.7 - Alojamentos
-    - 5.7.1 - Manutenção de alojamentos
-- 5.8 - Presença e pagamentos
-    - 5.8.1 - Módulo que facilita informar presença e pagamento
-    - 5.8.2 - Possivelmente usar qr code para presença
-- 5.9 - Dashboard
-- 5.10 - Calendário
-
-## Premissas
-- Inscrição no evento tem que enviar por e-mail ou disponibilizar um link para download da ficha
-- Conseguir substituir o que o Floriano já tem para gestão do evento
-- Conseguir disponibilizar as informações para os gestores
-
-## Restrições
-- Não temos budget
-- Não temos Cloud
-
-## Riscos iniciais
-- Não conhecimento total das tecnologias que utilizaremos
-- Junção das tecnologias de Frontend e Backend sem um histórico delas juntas em um projeto.
-

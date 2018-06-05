@@ -11,7 +11,7 @@ describe('Evento e2e test', () => {
         browser.get('/');
         browser.waitForAngular();
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
+        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
         browser.waitForAngular();
     });
 
@@ -19,7 +19,7 @@ describe('Evento e2e test', () => {
         navBarPage.goToEntity('evento-comeerj');
         eventoComponentsPage = new EventoComponentsPage();
         expect(eventoComponentsPage.getTitle())
-            .toMatch(/Eventos/);
+            .toMatch(/comeerjApp.evento.home.title/);
 
     });
 
@@ -27,7 +27,7 @@ describe('Evento e2e test', () => {
         eventoComponentsPage.clickOnCreateButton();
         eventoDialogPage = new EventoDialogPage();
         expect(eventoDialogPage.getModalTitle())
-            .toMatch(/Create or edit a Evento/);
+            .toMatch(/comeerjApp.evento.home.createOrEditLabel/);
         eventoDialogPage.close();
     });
 
@@ -63,7 +63,7 @@ export class EventoComponentsPage {
     }
 
     getTitle() {
-        return this.title.getText();
+        return this.title.getAttribute('jhiTranslate');
     }
 }
 
@@ -79,7 +79,7 @@ export class EventoDialogPage {
     fimInscricoesInput = element(by.css('input#field_fimInscricoes'));
 
     getModalTitle() {
-        return this.modalTitle.getText();
+        return this.modalTitle.getAttribute('jhiTranslate');
     }
 
     setVersaoInput = function(versao) {

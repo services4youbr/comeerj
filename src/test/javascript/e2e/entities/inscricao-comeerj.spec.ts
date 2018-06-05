@@ -11,7 +11,7 @@ describe('Inscricao e2e test', () => {
         browser.get('/');
         browser.waitForAngular();
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
+        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
         browser.waitForAngular();
     });
 
@@ -19,7 +19,7 @@ describe('Inscricao e2e test', () => {
         navBarPage.goToEntity('inscricao-comeerj');
         inscricaoComponentsPage = new InscricaoComponentsPage();
         expect(inscricaoComponentsPage.getTitle())
-            .toMatch(/Inscricaos/);
+            .toMatch(/comeerjApp.inscricao.home.title/);
 
     });
 
@@ -27,7 +27,7 @@ describe('Inscricao e2e test', () => {
         inscricaoComponentsPage.clickOnCreateButton();
         inscricaoDialogPage = new InscricaoDialogPage();
         expect(inscricaoDialogPage.getModalTitle())
-            .toMatch(/Create or edit a Inscricao/);
+            .toMatch(/comeerjApp.inscricao.home.createOrEditLabel/);
         inscricaoDialogPage.close();
     });
 
@@ -65,7 +65,7 @@ export class InscricaoComponentsPage {
     }
 
     getTitle() {
-        return this.title.getText();
+        return this.title.getAttribute('jhiTranslate');
     }
 }
 
@@ -86,7 +86,7 @@ export class InscricaoDialogPage {
     alojamentoSelect = element(by.css('select#field_alojamento'));
 
     getModalTitle() {
-        return this.modalTitle.getText();
+        return this.modalTitle.getAttribute('jhiTranslate');
     }
 
     setNomeInput = function(nome) {

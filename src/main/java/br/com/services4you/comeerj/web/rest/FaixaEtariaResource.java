@@ -21,9 +21,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing FaixaEtaria.
@@ -126,22 +123,4 @@ public class FaixaEtariaResource {
         faixaEtariaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/faixa-etarias?query=:query : search for the faixaEtaria corresponding
-     * to the query.
-     *
-     * @param query the query of the faixaEtaria search
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/faixa-etarias")
-    @Timed
-    public ResponseEntity<List<FaixaEtariaDTO>> searchFaixaEtarias(@RequestParam String query, Pageable pageable) {
-        log.debug("REST request to search for a page of FaixaEtarias for query {}", query);
-        Page<FaixaEtariaDTO> page = faixaEtariaService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/faixa-etarias");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 }

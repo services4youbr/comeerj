@@ -33,7 +33,7 @@ export const comissaoRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Comissaos'
+            pageTitle: 'comeerjApp.comissao.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -41,7 +41,7 @@ export const comissaoRoute: Routes = [
         component: ComissaoComeerjDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Comissaos'
+            pageTitle: 'comeerjApp.comissao.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -53,7 +53,7 @@ export const comissaoPopupRoute: Routes = [
         component: ComissaoComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Comissaos'
+            pageTitle: 'comeerjApp.comissao.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -63,7 +63,7 @@ export const comissaoPopupRoute: Routes = [
         component: ComissaoComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Comissaos'
+            pageTitle: 'comeerjApp.comissao.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -73,7 +73,7 @@ export const comissaoPopupRoute: Routes = [
         component: ComissaoComeerjDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Comissaos'
+            pageTitle: 'comeerjApp.comissao.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

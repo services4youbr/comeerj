@@ -33,7 +33,7 @@ export const eventoRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Eventos'
+            pageTitle: 'comeerjApp.evento.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -41,7 +41,7 @@ export const eventoRoute: Routes = [
         component: EventoComeerjDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Eventos'
+            pageTitle: 'comeerjApp.evento.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -53,7 +53,7 @@ export const eventoPopupRoute: Routes = [
         component: EventoComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Eventos'
+            pageTitle: 'comeerjApp.evento.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -63,7 +63,7 @@ export const eventoPopupRoute: Routes = [
         component: EventoComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Eventos'
+            pageTitle: 'comeerjApp.evento.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -73,7 +73,7 @@ export const eventoPopupRoute: Routes = [
         component: EventoComeerjDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Eventos'
+            pageTitle: 'comeerjApp.evento.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

@@ -3,7 +3,6 @@ package br.com.services4you.comeerj.service.impl;
 import br.com.services4you.comeerj.service.PoloService;
 import br.com.services4you.comeerj.domain.Polo;
 import br.com.services4you.comeerj.repository.PoloRepository;
-import br.com.services4you.comeerj.repository.search.PoloSearchRepository;
 import br.com.services4you.comeerj.service.dto.PoloDTO;
 import br.com.services4you.comeerj.service.mapper.PoloMapper;
 import org.slf4j.Logger;
@@ -13,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Polo.
@@ -29,12 +26,9 @@ public class PoloServiceImpl implements PoloService {
 
     private final PoloMapper poloMapper;
 
-    private final PoloSearchRepository poloSearchRepository;
-
-    public PoloServiceImpl(PoloRepository poloRepository, PoloMapper poloMapper, PoloSearchRepository poloSearchRepository) {
+    public PoloServiceImpl(PoloRepository poloRepository, PoloMapper poloMapper) {
         this.poloRepository = poloRepository;
         this.poloMapper = poloMapper;
-        this.poloSearchRepository = poloSearchRepository;
     }
 
     /**
@@ -48,9 +42,7 @@ public class PoloServiceImpl implements PoloService {
         log.debug("Request to save Polo : {}", poloDTO);
         Polo polo = poloMapper.toEntity(poloDTO);
         polo = poloRepository.save(polo);
-        PoloDTO result = poloMapper.toDto(polo);
-        poloSearchRepository.save(polo);
-        return result;
+        return poloMapper.toDto(polo);
     }
 
     /**
@@ -90,21 +82,5 @@ public class PoloServiceImpl implements PoloService {
     public void delete(Long id) {
         log.debug("Request to delete Polo : {}", id);
         poloRepository.delete(id);
-        poloSearchRepository.delete(id);
-    }
-
-    /**
-     * Search for the polo corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<PoloDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Polos for query {}", query);
-        Page<Polo> result = poloSearchRepository.search(queryStringQuery(query), pageable);
-        return result.map(poloMapper::toDto);
     }
 }

@@ -32,7 +32,7 @@
             "fieldValues": "MASCULINO,FEMININO"
         }
     ],
-    "changelogDate": "20180602012728",
+    "changelogDate": "20180605023021",
     "entityTableName": "usuario",
     "dto": "mapstruct",
     "pagination": "pagination",

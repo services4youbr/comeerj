@@ -5,7 +5,6 @@ import br.com.services4you.comeerj.ComeerjApp;
 import br.com.services4you.comeerj.domain.Comissao;
 import br.com.services4you.comeerj.repository.ComissaoRepository;
 import br.com.services4you.comeerj.service.ComissaoService;
-import br.com.services4you.comeerj.repository.search.ComissaoSearchRepository;
 import br.com.services4you.comeerj.service.dto.ComissaoDTO;
 import br.com.services4you.comeerj.service.mapper.ComissaoMapper;
 import br.com.services4you.comeerj.web.rest.errors.ExceptionTranslator;
@@ -61,9 +60,6 @@ public class ComissaoResourceIntTest {
     private ComissaoService comissaoService;
 
     @Autowired
-    private ComissaoSearchRepository comissaoSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -106,7 +102,6 @@ public class ComissaoResourceIntTest {
 
     @Before
     public void initTest() {
-        comissaoSearchRepository.deleteAll();
         comissao = createEntity(em);
     }
 
@@ -129,10 +124,6 @@ public class ComissaoResourceIntTest {
         assertThat(testComissao.getComissao()).isEqualTo(DEFAULT_COMISSAO);
         assertThat(testComissao.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testComissao.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
-
-        // Validate the Comissao in Elasticsearch
-        Comissao comissaoEs = comissaoSearchRepository.findOne(testComissao.getId());
-        assertThat(comissaoEs).isEqualToIgnoringGivenFields(testComissao);
     }
 
     @Test
@@ -200,7 +191,6 @@ public class ComissaoResourceIntTest {
     public void updateComissao() throws Exception {
         // Initialize the database
         comissaoRepository.saveAndFlush(comissao);
-        comissaoSearchRepository.save(comissao);
         int databaseSizeBeforeUpdate = comissaoRepository.findAll().size();
 
         // Update the comissao
@@ -225,10 +215,6 @@ public class ComissaoResourceIntTest {
         assertThat(testComissao.getComissao()).isEqualTo(UPDATED_COMISSAO);
         assertThat(testComissao.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testComissao.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
-
-        // Validate the Comissao in Elasticsearch
-        Comissao comissaoEs = comissaoSearchRepository.findOne(testComissao.getId());
-        assertThat(comissaoEs).isEqualToIgnoringGivenFields(testComissao);
     }
 
     @Test
@@ -255,7 +241,6 @@ public class ComissaoResourceIntTest {
     public void deleteComissao() throws Exception {
         // Initialize the database
         comissaoRepository.saveAndFlush(comissao);
-        comissaoSearchRepository.save(comissao);
         int databaseSizeBeforeDelete = comissaoRepository.findAll().size();
 
         // Get the comissao
@@ -263,30 +248,9 @@ public class ComissaoResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean comissaoExistsInEs = comissaoSearchRepository.exists(comissao.getId());
-        assertThat(comissaoExistsInEs).isFalse();
-
         // Validate the database is empty
         List<Comissao> comissaoList = comissaoRepository.findAll();
         assertThat(comissaoList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchComissao() throws Exception {
-        // Initialize the database
-        comissaoRepository.saveAndFlush(comissao);
-        comissaoSearchRepository.save(comissao);
-
-        // Search the comissao
-        restComissaoMockMvc.perform(get("/api/_search/comissaos?query=id:" + comissao.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(comissao.getId().intValue())))
-            .andExpect(jsonPath("$.[*].comissao").value(hasItem(DEFAULT_COMISSAO.toString())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
     }
 
     @Test

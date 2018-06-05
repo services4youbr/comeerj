@@ -12,7 +12,6 @@ export type EntityResponseType = HttpResponse<FaixaEtariaComeerj>;
 export class FaixaEtariaComeerjService {
 
     private resourceUrl =  SERVER_API_URL + 'api/faixa-etarias';
-    private resourceSearchUrl = SERVER_API_URL + 'api/_search/faixa-etarias';
 
     constructor(private http: HttpClient) { }
 
@@ -41,12 +40,6 @@ export class FaixaEtariaComeerjService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
-    }
-
-    search(req?: any): Observable<HttpResponse<FaixaEtariaComeerj[]>> {
-        const options = createRequestOption(req);
-        return this.http.get<FaixaEtariaComeerj[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<FaixaEtariaComeerj[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

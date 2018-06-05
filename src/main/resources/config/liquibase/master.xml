@@ -5,17 +5,17 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012728_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012729_added_entity_Evento.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012730_added_entity_Inscricao.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012731_added_entity_Comissao.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012732_added_entity_Polo.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012733_added_entity_FaixaEtaria.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012734_added_entity_Turma.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012735_added_entity_Alojamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023021_added_entity_Usuario.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023022_added_entity_Evento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023023_added_entity_Inscricao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023024_added_entity_Comissao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023025_added_entity_Polo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023026_added_entity_FaixaEtaria.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023027_added_entity_Turma.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023028_added_entity_Alojamento.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20180602012730_added_entity_constraints_Inscricao.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012734_added_entity_constraints_Turma.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180602012735_added_entity_constraints_Alojamento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023023_added_entity_constraints_Inscricao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023027_added_entity_constraints_Turma.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605023028_added_entity_constraints_Alojamento.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

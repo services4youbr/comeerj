@@ -21,9 +21,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Usuario.
@@ -126,22 +123,4 @@ public class UsuarioResource {
         usuarioService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/usuarios?query=:query : search for the usuario corresponding
-     * to the query.
-     *
-     * @param query the query of the usuario search
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/usuarios")
-    @Timed
-    public ResponseEntity<List<UsuarioDTO>> searchUsuarios(@RequestParam String query, Pageable pageable) {
-        log.debug("REST request to search for a page of Usuarios for query {}", query);
-        Page<UsuarioDTO> page = usuarioService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/usuarios");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 }

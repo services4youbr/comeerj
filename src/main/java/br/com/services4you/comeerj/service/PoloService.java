@@ -39,14 +39,4 @@ public interface PoloService {
      * @param id the id of the entity
      */
     void delete(Long id);
-
-    /**
-     * Search for the polo corresponding to the query.
-     *
-     * @param query the query of the search
-     * 
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    Page<PoloDTO> search(String query, Pageable pageable);
 }

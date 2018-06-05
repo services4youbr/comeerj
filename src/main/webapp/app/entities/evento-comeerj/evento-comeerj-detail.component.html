@@ -1,30 +1,30 @@
 
 <div *ngIf="evento">
-    <h2><span>Evento</span> {{evento.id}}</h2>
+    <h2><span jhiTranslate="comeerjApp.evento.detail.title">Evento</span> {{evento.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span>Versao</span></dt>
+        <dt><span jhiTranslate="comeerjApp.evento.versao">Versao</span></dt>
         <dd>
             <span>{{evento.versao}}</span>
         </dd>
-        <dt><span>Tema</span></dt>
+        <dt><span jhiTranslate="comeerjApp.evento.tema">Tema</span></dt>
         <dd>
             <span>{{evento.tema}}</span>
         </dd>
-        <dt><span>Inicio Evento</span></dt>
+        <dt><span jhiTranslate="comeerjApp.evento.inicioEvento">Inicio Evento</span></dt>
         <dd>
             <span>{{evento.inicioEvento | date:'medium'}}</span>
         </dd>
-        <dt><span>Fim Evento</span></dt>
+        <dt><span jhiTranslate="comeerjApp.evento.fimEvento">Fim Evento</span></dt>
         <dd>
             <span>{{evento.fimEvento | date:'medium'}}</span>
         </dd>
-        <dt><span>Inicio Inscricoes</span></dt>
+        <dt><span jhiTranslate="comeerjApp.evento.inicioInscricoes">Inicio Inscricoes</span></dt>
         <dd>
             <span>{{evento.inicioInscricoes | date:'medium'}}</span>
         </dd>
-        <dt><span>Fim Inscricoes</span></dt>
+        <dt><span jhiTranslate="comeerjApp.evento.fimInscricoes">Fim Inscricoes</span></dt>
         <dd>
             <span>{{evento.fimInscricoes | date:'medium'}}</span>
         </dd>
@@ -33,7 +33,7 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
     <button type="button"
@@ -41,6 +41,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
 </div>

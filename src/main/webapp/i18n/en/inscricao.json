@@ -1,0 +1,33 @@
+
+{
+    "comeerjApp": {
+        "inscricao" : {
+            "home": {
+                "title": "Inscricaos",
+                "createLabel": "Create a new Inscricao",
+                "createOrEditLabel": "Create or edit a Inscricao"
+            },
+            "created": "A new Inscricao is created with identifier {{ param }}",
+            "updated": "A Inscricao is updated with identifier {{ param }}",
+            "deleted": "A Inscricao is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Inscricao {{ id }}?"
+            },
+            "detail": {
+                "title": "Inscricao"
+            },
+            "nome": "Nome",
+            "tipoParticipacao": "Tipo Participacao",
+            "idade": "Idade",
+            "numeroParticipacoes": "Numero Participacoes",
+            "alojamentoResponsavel": "Alojamento Responsavel",
+            "polo": "Polo",
+            "evento": "Evento",
+            "comissao": "Comissao",
+            "usuario": "Usuario",
+            "turma": "Turma",
+            "responsavel": "Responsavel",
+            "alojamento": "Alojamento"
+        }
+    }
+}

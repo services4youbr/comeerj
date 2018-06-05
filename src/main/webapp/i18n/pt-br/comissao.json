@@ -1,0 +1,25 @@
+
+{
+    "comeerjApp": {
+        "comissao" : {
+            "home": {
+                "title": "Comissaos",
+                "createLabel": "Criar novo Comissao",
+                "createOrEditLabel": "Criar ou editar Comissao"
+            },
+            "created": "Um novo Comissao foi criado com o identificador {{ param }}",
+            "updated": "Um Comissao foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Comissao foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Comissao {{ id }}?"
+            },
+            "detail": {
+                "title": "Comissao"
+            },
+            "comissao": "Comissao",
+            "nome": "Nome",
+            "descricao": "Descricao",
+            "inscricoes": "Inscricoes"
+        }
+    }
+}

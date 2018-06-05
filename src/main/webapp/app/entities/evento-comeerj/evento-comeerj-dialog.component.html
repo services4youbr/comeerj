@@ -1,50 +1,50 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myEventoLabel">Create or edit a Evento</h4>
+        <h4 class="modal-title" id="myEventoLabel" jhiTranslate="comeerjApp.evento.home.createOrEditLabel">Create or edit a Evento</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!evento.id">
-            <label for="id">ID</label>
+            <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="evento.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_versao">Versao</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.evento.versao" for="field_versao">Versao</label>
             <input type="text" class="form-control" name="versao" id="field_versao"
                 [(ngModel)]="evento.versao" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_tema">Tema</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.evento.tema" for="field_tema">Tema</label>
             <input type="text" class="form-control" name="tema" id="field_tema"
                 [(ngModel)]="evento.tema" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_inicioEvento">Inicio Evento</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.evento.inicioEvento" for="field_inicioEvento">Inicio Evento</label>
             <div class="d-flex">
                 <input id="field_inicioEvento" type="datetime-local" class="form-control" name="inicioEvento" [(ngModel)]="evento.inicioEvento"
                 />
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_fimEvento">Fim Evento</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.evento.fimEvento" for="field_fimEvento">Fim Evento</label>
             <div class="d-flex">
                 <input id="field_fimEvento" type="datetime-local" class="form-control" name="fimEvento" [(ngModel)]="evento.fimEvento"
                 />
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_inicioInscricoes">Inicio Inscricoes</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.evento.inicioInscricoes" for="field_inicioInscricoes">Inicio Inscricoes</label>
             <div class="d-flex">
                 <input id="field_inicioInscricoes" type="datetime-local" class="form-control" name="inicioInscricoes" [(ngModel)]="evento.inicioInscricoes"
                 />
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_fimInscricoes">Fim Inscricoes</label>
+            <label class="form-control-label" jhiTranslate="comeerjApp.evento.fimInscricoes" for="field_fimInscricoes">Fim Inscricoes</label>
             <div class="d-flex">
                 <input id="field_fimInscricoes" type="datetime-local" class="form-control" name="fimInscricoes" [(ngModel)]="evento.fimInscricoes"
                 />
@@ -54,10 +54,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>
 </form>

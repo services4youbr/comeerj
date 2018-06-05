@@ -3,10 +3,9 @@ import './vendor.ts';
 import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2Webstorage, LocalStorageService, SessionStorageService  } from 'ngx-webstorage';
+import { Ng2Webstorage } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
@@ -14,9 +13,9 @@ import { ComeerjSharedModule, UserRouteAccessService } from './shared';
 import { ComeerjAppRoutingModule} from './app-routing.module';
 import { ComeerjHomeModule } from './home/home.module';
 import { ComeerjAdminModule } from './admin/admin.module';
-import { ComeerjAccountModule } from './account/account.module';
 import { ComeerjEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { StateStorageService } from './shared/auth/state-storage.service';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -24,6 +23,7 @@ import {
     FooterComponent,
     ProfileService,
     PageRibbonComponent,
+    ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
 
@@ -35,7 +35,6 @@ import {
         ComeerjSharedModule,
         ComeerjHomeModule,
         ComeerjAdminModule,
-        ComeerjAccountModule,
         ComeerjEntityModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
@@ -44,6 +43,7 @@ import {
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
+        ActiveMenuDirective,
         FooterComponent
     ],
     providers: [
@@ -52,18 +52,10 @@ import {
         UserRouteAccessService,
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-            deps: [
-                LocalStorageService,
-                SessionStorageService
-            ]
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
             useClass: AuthExpiredInterceptor,
             multi: true,
             deps: [
+                StateStorageService,
                 Injector
             ]
         },

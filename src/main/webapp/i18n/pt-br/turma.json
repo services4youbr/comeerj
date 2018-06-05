@@ -1,0 +1,25 @@
+
+{
+    "comeerjApp": {
+        "turma" : {
+            "home": {
+                "title": "Turmas",
+                "createLabel": "Criar novo Turma",
+                "createOrEditLabel": "Criar ou editar Turma"
+            },
+            "created": "Um novo Turma foi criado com o identificador {{ param }}",
+            "updated": "Um Turma foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Turma foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Turma {{ id }}?"
+            },
+            "detail": {
+                "title": "Turma"
+            },
+            "nome": "Nome",
+            "inscritos": "Inscritos",
+            "evangelizadores": "Evangelizadores",
+            "faixaEtaria": "Faixa Etaria"
+        }
+    }
+}

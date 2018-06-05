@@ -11,7 +11,7 @@ describe('Polo e2e test', () => {
         browser.get('/');
         browser.waitForAngular();
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
+        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
         browser.waitForAngular();
     });
 
@@ -19,7 +19,7 @@ describe('Polo e2e test', () => {
         navBarPage.goToEntity('polo-comeerj');
         poloComponentsPage = new PoloComponentsPage();
         expect(poloComponentsPage.getTitle())
-            .toMatch(/Polos/);
+            .toMatch(/comeerjApp.polo.home.title/);
 
     });
 
@@ -27,7 +27,7 @@ describe('Polo e2e test', () => {
         poloComponentsPage.clickOnCreateButton();
         poloDialogPage = new PoloDialogPage();
         expect(poloDialogPage.getModalTitle())
-            .toMatch(/Create or edit a Polo/);
+            .toMatch(/comeerjApp.polo.home.createOrEditLabel/);
         poloDialogPage.close();
     });
 
@@ -59,7 +59,7 @@ export class PoloComponentsPage {
     }
 
     getTitle() {
-        return this.title.getText();
+        return this.title.getAttribute('jhiTranslate');
     }
 }
 
@@ -73,7 +73,7 @@ export class PoloDialogPage {
     localizacaoInput = element(by.css('input#field_localizacao'));
 
     getModalTitle() {
-        return this.modalTitle.getText();
+        return this.modalTitle.getAttribute('jhiTranslate');
     }
 
     setNomeInput = function(nome) {

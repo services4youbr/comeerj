@@ -1,62 +1,62 @@
 
 <div *ngIf="inscricao">
-    <h2><span>Inscricao</span> {{inscricao.id}}</h2>
+    <h2><span jhiTranslate="comeerjApp.inscricao.detail.title">Inscricao</span> {{inscricao.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span>Nome</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.nome">Nome</span></dt>
         <dd>
             <span>{{inscricao.nome}}</span>
         </dd>
-        <dt><span>Tipo Participacao</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.tipoParticipacao">Tipo Participacao</span></dt>
         <dd>
-            <span>{{inscricao.tipoParticipacao}}</span>
+            <span jhiTranslate="{{'comeerjApp.TipoParticicao.' + inscricao.tipoParticipacao}}">{{inscricao.tipoParticipacao}}</span>
         </dd>
-        <dt><span>Idade</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.idade">Idade</span></dt>
         <dd>
             <span>{{inscricao.idade}}</span>
         </dd>
-        <dt><span>Numero Participacoes</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.numeroParticipacoes">Numero Participacoes</span></dt>
         <dd>
             <span>{{inscricao.numeroParticipacoes}}</span>
         </dd>
-        <dt><span>Polo</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.polo">Polo</span></dt>
         <dd>
             <div *ngIf="inscricao.poloId">
                 <a [routerLink]="['/polo-comeerj', inscricao.poloId]">{{inscricao.poloId}}</a>
             </div>
         </dd>
-        <dt><span>Evento</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.evento">Evento</span></dt>
         <dd>
             <div *ngIf="inscricao.eventoId">
                 <a [routerLink]="['/evento-comeerj', inscricao.eventoId]">{{inscricao.eventoId}}</a>
             </div>
         </dd>
-        <dt><span>Comissao</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.comissao">Comissao</span></dt>
         <dd>
             <div *ngIf="inscricao.comissaoId">
                 <a [routerLink]="['/comissao-comeerj', inscricao.comissaoId]">{{inscricao.comissaoId}}</a>
             </div>
         </dd>
-        <dt><span>Usuario</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.usuario">Usuario</span></dt>
         <dd>
             <div *ngIf="inscricao.usuarioId">
                 <a [routerLink]="['/usuario-comeerj', inscricao.usuarioId]">{{inscricao.usuarioId}}</a>
             </div>
         </dd>
-        <dt><span>Turma</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.turma">Turma</span></dt>
         <dd>
             <div *ngIf="inscricao.turmaId">
                 <a [routerLink]="['/turma-comeerj', inscricao.turmaId]">{{inscricao.turmaId}}</a>
             </div>
         </dd>
-        <dt><span>Responsavel</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.responsavel">Responsavel</span></dt>
         <dd>
             <div *ngIf="inscricao.responsavelId">
                 <a [routerLink]="['/turma-comeerj', inscricao.responsavelId]">{{inscricao.responsavelId}}</a>
             </div>
         </dd>
-        <dt><span>Alojamento</span></dt>
+        <dt><span jhiTranslate="comeerjApp.inscricao.alojamento">Alojamento</span></dt>
         <dd>
             <div *ngIf="inscricao.alojamentoId">
                 <a [routerLink]="['/alojamento-comeerj', inscricao.alojamentoId]">{{inscricao.alojamentoId}}</a>
@@ -67,7 +67,7 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
     <button type="button"
@@ -75,6 +75,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
 </div>

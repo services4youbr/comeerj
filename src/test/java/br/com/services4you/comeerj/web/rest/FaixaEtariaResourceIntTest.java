@@ -5,7 +5,6 @@ import br.com.services4you.comeerj.ComeerjApp;
 import br.com.services4you.comeerj.domain.FaixaEtaria;
 import br.com.services4you.comeerj.repository.FaixaEtariaRepository;
 import br.com.services4you.comeerj.service.FaixaEtariaService;
-import br.com.services4you.comeerj.repository.search.FaixaEtariaSearchRepository;
 import br.com.services4you.comeerj.service.dto.FaixaEtariaDTO;
 import br.com.services4you.comeerj.service.mapper.FaixaEtariaMapper;
 import br.com.services4you.comeerj.web.rest.errors.ExceptionTranslator;
@@ -64,9 +63,6 @@ public class FaixaEtariaResourceIntTest {
     private FaixaEtariaService faixaEtariaService;
 
     @Autowired
-    private FaixaEtariaSearchRepository faixaEtariaSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -110,7 +106,6 @@ public class FaixaEtariaResourceIntTest {
 
     @Before
     public void initTest() {
-        faixaEtariaSearchRepository.deleteAll();
         faixaEtaria = createEntity(em);
     }
 
@@ -134,10 +129,6 @@ public class FaixaEtariaResourceIntTest {
         assertThat(testFaixaEtaria.getIdadeMin()).isEqualTo(DEFAULT_IDADE_MIN);
         assertThat(testFaixaEtaria.getIdadeMaxima()).isEqualTo(DEFAULT_IDADE_MAXIMA);
         assertThat(testFaixaEtaria.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
-
-        // Validate the FaixaEtaria in Elasticsearch
-        FaixaEtaria faixaEtariaEs = faixaEtariaSearchRepository.findOne(testFaixaEtaria.getId());
-        assertThat(faixaEtariaEs).isEqualToIgnoringGivenFields(testFaixaEtaria);
     }
 
     @Test
@@ -207,7 +198,6 @@ public class FaixaEtariaResourceIntTest {
     public void updateFaixaEtaria() throws Exception {
         // Initialize the database
         faixaEtariaRepository.saveAndFlush(faixaEtaria);
-        faixaEtariaSearchRepository.save(faixaEtaria);
         int databaseSizeBeforeUpdate = faixaEtariaRepository.findAll().size();
 
         // Update the faixaEtaria
@@ -234,10 +224,6 @@ public class FaixaEtariaResourceIntTest {
         assertThat(testFaixaEtaria.getIdadeMin()).isEqualTo(UPDATED_IDADE_MIN);
         assertThat(testFaixaEtaria.getIdadeMaxima()).isEqualTo(UPDATED_IDADE_MAXIMA);
         assertThat(testFaixaEtaria.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
-
-        // Validate the FaixaEtaria in Elasticsearch
-        FaixaEtaria faixaEtariaEs = faixaEtariaSearchRepository.findOne(testFaixaEtaria.getId());
-        assertThat(faixaEtariaEs).isEqualToIgnoringGivenFields(testFaixaEtaria);
     }
 
     @Test
@@ -264,7 +250,6 @@ public class FaixaEtariaResourceIntTest {
     public void deleteFaixaEtaria() throws Exception {
         // Initialize the database
         faixaEtariaRepository.saveAndFlush(faixaEtaria);
-        faixaEtariaSearchRepository.save(faixaEtaria);
         int databaseSizeBeforeDelete = faixaEtariaRepository.findAll().size();
 
         // Get the faixaEtaria
@@ -272,31 +257,9 @@ public class FaixaEtariaResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean faixaEtariaExistsInEs = faixaEtariaSearchRepository.exists(faixaEtaria.getId());
-        assertThat(faixaEtariaExistsInEs).isFalse();
-
         // Validate the database is empty
         List<FaixaEtaria> faixaEtariaList = faixaEtariaRepository.findAll();
         assertThat(faixaEtariaList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchFaixaEtaria() throws Exception {
-        // Initialize the database
-        faixaEtariaRepository.saveAndFlush(faixaEtaria);
-        faixaEtariaSearchRepository.save(faixaEtaria);
-
-        // Search the faixaEtaria
-        restFaixaEtariaMockMvc.perform(get("/api/_search/faixa-etarias?query=id:" + faixaEtaria.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(faixaEtaria.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-            .andExpect(jsonPath("$.[*].idadeMin").value(hasItem(DEFAULT_IDADE_MIN.intValue())))
-            .andExpect(jsonPath("$.[*].idadeMaxima").value(hasItem(DEFAULT_IDADE_MAXIMA.intValue())))
-            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
     }
 
     @Test

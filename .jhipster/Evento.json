@@ -34,7 +34,7 @@
             "fieldType": "Instant"
         }
     ],
-    "changelogDate": "20180602012729",
+    "changelogDate": "20180605023022",
     "entityTableName": "evento",
     "dto": "mapstruct",
     "pagination": "pagination",

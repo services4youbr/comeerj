@@ -1,0 +1,28 @@
+
+{
+    "comeerjApp": {
+        "evento" : {
+            "home": {
+                "title": "Eventos",
+                "createLabel": "Criar novo Evento",
+                "createOrEditLabel": "Criar ou editar Evento"
+            },
+            "created": "Um novo Evento foi criado com o identificador {{ param }}",
+            "updated": "Um Evento foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Evento foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Evento {{ id }}?"
+            },
+            "detail": {
+                "title": "Evento"
+            },
+            "versao": "Versao",
+            "tema": "Tema",
+            "inicioEvento": "Inicio Evento",
+            "fimEvento": "Fim Evento",
+            "inicioInscricoes": "Inicio Inscricoes",
+            "fimInscricoes": "Fim Inscricoes",
+            "inscricoes": "Inscricoes"
+        }
+    }
+}

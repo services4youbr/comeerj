@@ -12,7 +12,6 @@ export type EntityResponseType = HttpResponse<InscricaoComeerj>;
 export class InscricaoComeerjService {
 
     private resourceUrl =  SERVER_API_URL + 'api/inscricaos';
-    private resourceSearchUrl = SERVER_API_URL + 'api/_search/inscricaos';
 
     constructor(private http: HttpClient) { }
 
@@ -41,12 +40,6 @@ export class InscricaoComeerjService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
-    }
-
-    search(req?: any): Observable<HttpResponse<InscricaoComeerj[]>> {
-        const options = createRequestOption(req);
-        return this.http.get<InscricaoComeerj[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<InscricaoComeerj[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

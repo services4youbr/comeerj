@@ -11,7 +11,7 @@ describe('Comissao e2e test', () => {
         browser.get('/');
         browser.waitForAngular();
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
+        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
         browser.waitForAngular();
     });
 
@@ -19,7 +19,7 @@ describe('Comissao e2e test', () => {
         navBarPage.goToEntity('comissao-comeerj');
         comissaoComponentsPage = new ComissaoComponentsPage();
         expect(comissaoComponentsPage.getTitle())
-            .toMatch(/Comissaos/);
+            .toMatch(/comeerjApp.comissao.home.title/);
 
     });
 
@@ -27,7 +27,7 @@ describe('Comissao e2e test', () => {
         comissaoComponentsPage.clickOnCreateButton();
         comissaoDialogPage = new ComissaoDialogPage();
         expect(comissaoDialogPage.getModalTitle())
-            .toMatch(/Create or edit a Comissao/);
+            .toMatch(/comeerjApp.comissao.home.createOrEditLabel/);
         comissaoDialogPage.close();
     });
 
@@ -57,7 +57,7 @@ export class ComissaoComponentsPage {
     }
 
     getTitle() {
-        return this.title.getText();
+        return this.title.getAttribute('jhiTranslate');
     }
 }
 
@@ -70,7 +70,7 @@ export class ComissaoDialogPage {
     descricaoInput = element(by.css('input#field_descricao'));
 
     getModalTitle() {
-        return this.modalTitle.getText();
+        return this.modalTitle.getAttribute('jhiTranslate');
     }
 
     setComissaoInput = function(comissao) {

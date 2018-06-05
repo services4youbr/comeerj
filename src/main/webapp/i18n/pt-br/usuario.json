@@ -1,0 +1,27 @@
+
+{
+    "comeerjApp": {
+        "usuario" : {
+            "home": {
+                "title": "Usuarios",
+                "createLabel": "Criar novo Usuario",
+                "createOrEditLabel": "Criar ou editar Usuario"
+            },
+            "created": "Um novo Usuario foi criado com o identificador {{ param }}",
+            "updated": "Um Usuario foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Usuario foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Usuario {{ id }}?"
+            },
+            "detail": {
+                "title": "Usuario"
+            },
+            "userId": "User Id",
+            "name": "Name",
+            "email": "Email",
+            "perfil": "Perfil",
+            "genero": "Genero",
+            "inscricoes": "Inscricoes"
+        }
+    }
+}

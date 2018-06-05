@@ -1,5 +1,4 @@
 {
-
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
@@ -27,5 +26,4 @@
         "src/main/webapp/app",
         "src/test/javascript/"
     ]
-
 }

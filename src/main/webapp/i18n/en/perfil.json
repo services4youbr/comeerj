@@ -1,0 +1,10 @@
+{
+    "comeerjApp": {
+        "Perfil" : {
+            "null": "",
+            "ADMINISTRADOR": "ADMINISTRADOR",
+            "COORDENADOR": "COORDENADOR",
+            "USUARIO": "USUARIO"
+        }
+    }
+}

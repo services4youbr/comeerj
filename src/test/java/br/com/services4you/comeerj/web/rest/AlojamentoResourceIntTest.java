@@ -5,7 +5,6 @@ import br.com.services4you.comeerj.ComeerjApp;
 import br.com.services4you.comeerj.domain.Alojamento;
 import br.com.services4you.comeerj.repository.AlojamentoRepository;
 import br.com.services4you.comeerj.service.AlojamentoService;
-import br.com.services4you.comeerj.repository.search.AlojamentoSearchRepository;
 import br.com.services4you.comeerj.service.dto.AlojamentoDTO;
 import br.com.services4you.comeerj.service.mapper.AlojamentoMapper;
 import br.com.services4you.comeerj.web.rest.errors.ExceptionTranslator;
@@ -65,9 +64,6 @@ public class AlojamentoResourceIntTest {
     private AlojamentoService alojamentoService;
 
     @Autowired
-    private AlojamentoSearchRepository alojamentoSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -111,7 +107,6 @@ public class AlojamentoResourceIntTest {
 
     @Before
     public void initTest() {
-        alojamentoSearchRepository.deleteAll();
         alojamento = createEntity(em);
     }
 
@@ -135,10 +130,6 @@ public class AlojamentoResourceIntTest {
         assertThat(testAlojamento.getSala()).isEqualTo(DEFAULT_SALA);
         assertThat(testAlojamento.getLocal()).isEqualTo(DEFAULT_LOCAL);
         assertThat(testAlojamento.getGenero()).isEqualTo(DEFAULT_GENERO);
-
-        // Validate the Alojamento in Elasticsearch
-        Alojamento alojamentoEs = alojamentoSearchRepository.findOne(testAlojamento.getId());
-        assertThat(alojamentoEs).isEqualToIgnoringGivenFields(testAlojamento);
     }
 
     @Test
@@ -208,7 +199,6 @@ public class AlojamentoResourceIntTest {
     public void updateAlojamento() throws Exception {
         // Initialize the database
         alojamentoRepository.saveAndFlush(alojamento);
-        alojamentoSearchRepository.save(alojamento);
         int databaseSizeBeforeUpdate = alojamentoRepository.findAll().size();
 
         // Update the alojamento
@@ -235,10 +225,6 @@ public class AlojamentoResourceIntTest {
         assertThat(testAlojamento.getSala()).isEqualTo(UPDATED_SALA);
         assertThat(testAlojamento.getLocal()).isEqualTo(UPDATED_LOCAL);
         assertThat(testAlojamento.getGenero()).isEqualTo(UPDATED_GENERO);
-
-        // Validate the Alojamento in Elasticsearch
-        Alojamento alojamentoEs = alojamentoSearchRepository.findOne(testAlojamento.getId());
-        assertThat(alojamentoEs).isEqualToIgnoringGivenFields(testAlojamento);
     }
 
     @Test
@@ -265,7 +251,6 @@ public class AlojamentoResourceIntTest {
     public void deleteAlojamento() throws Exception {
         // Initialize the database
         alojamentoRepository.saveAndFlush(alojamento);
-        alojamentoSearchRepository.save(alojamento);
         int databaseSizeBeforeDelete = alojamentoRepository.findAll().size();
 
         // Get the alojamento
@@ -273,31 +258,9 @@ public class AlojamentoResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean alojamentoExistsInEs = alojamentoSearchRepository.exists(alojamento.getId());
-        assertThat(alojamentoExistsInEs).isFalse();
-
         // Validate the database is empty
         List<Alojamento> alojamentoList = alojamentoRepository.findAll();
         assertThat(alojamentoList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchAlojamento() throws Exception {
-        // Initialize the database
-        alojamentoRepository.saveAndFlush(alojamento);
-        alojamentoSearchRepository.save(alojamento);
-
-        // Search the alojamento
-        restAlojamentoMockMvc.perform(get("/api/_search/alojamentos?query=id:" + alojamento.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(alojamento.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-            .andExpect(jsonPath("$.[*].sala").value(hasItem(DEFAULT_SALA.toString())))
-            .andExpect(jsonPath("$.[*].local").value(hasItem(DEFAULT_LOCAL.toString())))
-            .andExpect(jsonPath("$.[*].genero").value(hasItem(DEFAULT_GENERO.toString())));
     }
 
     @Test

@@ -1,0 +1,27 @@
+
+{
+    "comeerjApp": {
+        "alojamento" : {
+            "home": {
+                "title": "Alojamentos",
+                "createLabel": "Criar novo Alojamento",
+                "createOrEditLabel": "Criar ou editar Alojamento"
+            },
+            "created": "Um novo Alojamento foi criado com o identificador {{ param }}",
+            "updated": "Um Alojamento foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Alojamento foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Alojamento {{ id }}?"
+            },
+            "detail": {
+                "title": "Alojamento"
+            },
+            "nome": "Nome",
+            "sala": "Sala",
+            "local": "Local",
+            "genero": "Genero",
+            "responsavel": "Responsavel",
+            "inscritos": "Inscritos"
+        }
+    }
+}

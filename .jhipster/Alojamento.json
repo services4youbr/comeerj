@@ -35,7 +35,7 @@
             "fieldValues": "MASCULINO,FEMININO"
         }
     ],
-    "changelogDate": "20180602012735",
+    "changelogDate": "20180605023028",
     "entityTableName": "alojamento",
     "dto": "mapstruct",
     "pagination": "pagination",

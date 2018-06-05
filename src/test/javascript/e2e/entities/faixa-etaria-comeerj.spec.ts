@@ -11,7 +11,7 @@ describe('FaixaEtaria e2e test', () => {
         browser.get('/');
         browser.waitForAngular();
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
+        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
         browser.waitForAngular();
     });
 
@@ -19,7 +19,7 @@ describe('FaixaEtaria e2e test', () => {
         navBarPage.goToEntity('faixa-etaria-comeerj');
         faixaEtariaComponentsPage = new FaixaEtariaComponentsPage();
         expect(faixaEtariaComponentsPage.getTitle())
-            .toMatch(/Faixa Etarias/);
+            .toMatch(/comeerjApp.faixaEtaria.home.title/);
 
     });
 
@@ -27,7 +27,7 @@ describe('FaixaEtaria e2e test', () => {
         faixaEtariaComponentsPage.clickOnCreateButton();
         faixaEtariaDialogPage = new FaixaEtariaDialogPage();
         expect(faixaEtariaDialogPage.getModalTitle())
-            .toMatch(/Create or edit a Faixa Etaria/);
+            .toMatch(/comeerjApp.faixaEtaria.home.createOrEditLabel/);
         faixaEtariaDialogPage.close();
     });
 
@@ -59,7 +59,7 @@ export class FaixaEtariaComponentsPage {
     }
 
     getTitle() {
-        return this.title.getText();
+        return this.title.getAttribute('jhiTranslate');
     }
 }
 
@@ -73,7 +73,7 @@ export class FaixaEtariaDialogPage {
     descricaoInput = element(by.css('input#field_descricao'));
 
     getModalTitle() {
-        return this.modalTitle.getText();
+        return this.modalTitle.getAttribute('jhiTranslate');
     }
 
     setNomeInput = function(nome) {

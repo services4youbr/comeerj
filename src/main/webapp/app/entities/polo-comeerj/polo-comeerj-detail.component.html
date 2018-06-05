@@ -1,22 +1,22 @@
 
 <div *ngIf="polo">
-    <h2><span>Polo</span> {{polo.id}}</h2>
+    <h2><span jhiTranslate="comeerjApp.polo.detail.title">Polo</span> {{polo.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span>Nome</span></dt>
+        <dt><span jhiTranslate="comeerjApp.polo.nome">Nome</span></dt>
         <dd>
             <span>{{polo.nome}}</span>
         </dd>
-        <dt><span>Numero</span></dt>
+        <dt><span jhiTranslate="comeerjApp.polo.numero">Numero</span></dt>
         <dd>
             <span>{{polo.numero}}</span>
         </dd>
-        <dt><span>Reunir</span></dt>
+        <dt><span jhiTranslate="comeerjApp.polo.reunir">Reunir</span></dt>
         <dd>
             <span>{{polo.reunir}}</span>
         </dd>
-        <dt><span>Localizacao</span></dt>
+        <dt><span jhiTranslate="comeerjApp.polo.localizacao">Localizacao</span></dt>
         <dd>
             <span>{{polo.localizacao}}</span>
         </dd>
@@ -25,7 +25,7 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
     <button type="button"
@@ -33,6 +33,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
 </div>

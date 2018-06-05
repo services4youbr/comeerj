@@ -11,7 +11,7 @@ describe('Usuario e2e test', () => {
         browser.get('/');
         browser.waitForAngular();
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
+        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
         browser.waitForAngular();
     });
 
@@ -19,7 +19,7 @@ describe('Usuario e2e test', () => {
         navBarPage.goToEntity('usuario-comeerj');
         usuarioComponentsPage = new UsuarioComponentsPage();
         expect(usuarioComponentsPage.getTitle())
-            .toMatch(/Usuarios/);
+            .toMatch(/comeerjApp.usuario.home.title/);
 
     });
 
@@ -27,7 +27,7 @@ describe('Usuario e2e test', () => {
         usuarioComponentsPage.clickOnCreateButton();
         usuarioDialogPage = new UsuarioDialogPage();
         expect(usuarioDialogPage.getModalTitle())
-            .toMatch(/Create or edit a Usuario/);
+            .toMatch(/comeerjApp.usuario.home.createOrEditLabel/);
         usuarioDialogPage.close();
     });
 
@@ -59,7 +59,7 @@ export class UsuarioComponentsPage {
     }
 
     getTitle() {
-        return this.title.getText();
+        return this.title.getAttribute('jhiTranslate');
     }
 }
 
@@ -74,7 +74,7 @@ export class UsuarioDialogPage {
     generoSelect = element(by.css('select#field_genero'));
 
     getModalTitle() {
-        return this.modalTitle.getText();
+        return this.modalTitle.getAttribute('jhiTranslate');
     }
 
     setUserIdInput = function(userId) {

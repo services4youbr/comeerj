@@ -14,7 +14,6 @@ export type EntityResponseType = HttpResponse<EventoComeerj>;
 export class EventoComeerjService {
 
     private resourceUrl =  SERVER_API_URL + 'api/eventos';
-    private resourceSearchUrl = SERVER_API_URL + 'api/_search/eventos';
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
@@ -43,12 +42,6 @@ export class EventoComeerjService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
-    }
-
-    search(req?: any): Observable<HttpResponse<EventoComeerj[]>> {
-        const options = createRequestOption(req);
-        return this.http.get<EventoComeerj[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<EventoComeerj[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

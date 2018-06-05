@@ -11,7 +11,7 @@ describe('Alojamento e2e test', () => {
         browser.get('/');
         browser.waitForAngular();
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
+        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
         browser.waitForAngular();
     });
 
@@ -19,7 +19,7 @@ describe('Alojamento e2e test', () => {
         navBarPage.goToEntity('alojamento-comeerj');
         alojamentoComponentsPage = new AlojamentoComponentsPage();
         expect(alojamentoComponentsPage.getTitle())
-            .toMatch(/Alojamentos/);
+            .toMatch(/comeerjApp.alojamento.home.title/);
 
     });
 
@@ -27,7 +27,7 @@ describe('Alojamento e2e test', () => {
         alojamentoComponentsPage.clickOnCreateButton();
         alojamentoDialogPage = new AlojamentoDialogPage();
         expect(alojamentoDialogPage.getModalTitle())
-            .toMatch(/Create or edit a Alojamento/);
+            .toMatch(/comeerjApp.alojamento.home.createOrEditLabel/);
         alojamentoDialogPage.close();
     });
 
@@ -59,7 +59,7 @@ export class AlojamentoComponentsPage {
     }
 
     getTitle() {
-        return this.title.getText();
+        return this.title.getAttribute('jhiTranslate');
     }
 }
 
@@ -74,7 +74,7 @@ export class AlojamentoDialogPage {
     responsavelSelect = element(by.css('select#field_responsavel'));
 
     getModalTitle() {
-        return this.modalTitle.getText();
+        return this.modalTitle.getAttribute('jhiTranslate');
     }
 
     setNomeInput = function(nome) {

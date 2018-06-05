@@ -5,7 +5,6 @@ import br.com.services4you.comeerj.ComeerjApp;
 import br.com.services4you.comeerj.domain.Evento;
 import br.com.services4you.comeerj.repository.EventoRepository;
 import br.com.services4you.comeerj.service.EventoService;
-import br.com.services4you.comeerj.repository.search.EventoSearchRepository;
 import br.com.services4you.comeerj.service.dto.EventoDTO;
 import br.com.services4you.comeerj.service.mapper.EventoMapper;
 import br.com.services4you.comeerj.web.rest.errors.ExceptionTranslator;
@@ -72,9 +71,6 @@ public class EventoResourceIntTest {
     private EventoService eventoService;
 
     @Autowired
-    private EventoSearchRepository eventoSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -120,7 +116,6 @@ public class EventoResourceIntTest {
 
     @Before
     public void initTest() {
-        eventoSearchRepository.deleteAll();
         evento = createEntity(em);
     }
 
@@ -146,10 +141,6 @@ public class EventoResourceIntTest {
         assertThat(testEvento.getFimEvento()).isEqualTo(DEFAULT_FIM_EVENTO);
         assertThat(testEvento.getInicioInscricoes()).isEqualTo(DEFAULT_INICIO_INSCRICOES);
         assertThat(testEvento.getFimInscricoes()).isEqualTo(DEFAULT_FIM_INSCRICOES);
-
-        // Validate the Evento in Elasticsearch
-        Evento eventoEs = eventoSearchRepository.findOne(testEvento.getId());
-        assertThat(eventoEs).isEqualToIgnoringGivenFields(testEvento);
     }
 
     @Test
@@ -223,7 +214,6 @@ public class EventoResourceIntTest {
     public void updateEvento() throws Exception {
         // Initialize the database
         eventoRepository.saveAndFlush(evento);
-        eventoSearchRepository.save(evento);
         int databaseSizeBeforeUpdate = eventoRepository.findAll().size();
 
         // Update the evento
@@ -254,10 +244,6 @@ public class EventoResourceIntTest {
         assertThat(testEvento.getFimEvento()).isEqualTo(UPDATED_FIM_EVENTO);
         assertThat(testEvento.getInicioInscricoes()).isEqualTo(UPDATED_INICIO_INSCRICOES);
         assertThat(testEvento.getFimInscricoes()).isEqualTo(UPDATED_FIM_INSCRICOES);
-
-        // Validate the Evento in Elasticsearch
-        Evento eventoEs = eventoSearchRepository.findOne(testEvento.getId());
-        assertThat(eventoEs).isEqualToIgnoringGivenFields(testEvento);
     }
 
     @Test
@@ -284,7 +270,6 @@ public class EventoResourceIntTest {
     public void deleteEvento() throws Exception {
         // Initialize the database
         eventoRepository.saveAndFlush(evento);
-        eventoSearchRepository.save(evento);
         int databaseSizeBeforeDelete = eventoRepository.findAll().size();
 
         // Get the evento
@@ -292,33 +277,9 @@ public class EventoResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean eventoExistsInEs = eventoSearchRepository.exists(evento.getId());
-        assertThat(eventoExistsInEs).isFalse();
-
         // Validate the database is empty
         List<Evento> eventoList = eventoRepository.findAll();
         assertThat(eventoList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchEvento() throws Exception {
-        // Initialize the database
-        eventoRepository.saveAndFlush(evento);
-        eventoSearchRepository.save(evento);
-
-        // Search the evento
-        restEventoMockMvc.perform(get("/api/_search/eventos?query=id:" + evento.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(evento.getId().intValue())))
-            .andExpect(jsonPath("$.[*].versao").value(hasItem(DEFAULT_VERSAO.toString())))
-            .andExpect(jsonPath("$.[*].tema").value(hasItem(DEFAULT_TEMA.toString())))
-            .andExpect(jsonPath("$.[*].inicioEvento").value(hasItem(DEFAULT_INICIO_EVENTO.toString())))
-            .andExpect(jsonPath("$.[*].fimEvento").value(hasItem(DEFAULT_FIM_EVENTO.toString())))
-            .andExpect(jsonPath("$.[*].inicioInscricoes").value(hasItem(DEFAULT_INICIO_INSCRICOES.toString())))
-            .andExpect(jsonPath("$.[*].fimInscricoes").value(hasItem(DEFAULT_FIM_INSCRICOES.toString())));
     }
 
     @Test

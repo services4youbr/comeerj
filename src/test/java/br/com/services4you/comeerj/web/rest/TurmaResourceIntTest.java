@@ -5,7 +5,6 @@ import br.com.services4you.comeerj.ComeerjApp;
 import br.com.services4you.comeerj.domain.Turma;
 import br.com.services4you.comeerj.repository.TurmaRepository;
 import br.com.services4you.comeerj.service.TurmaService;
-import br.com.services4you.comeerj.repository.search.TurmaSearchRepository;
 import br.com.services4you.comeerj.service.dto.TurmaDTO;
 import br.com.services4you.comeerj.service.mapper.TurmaMapper;
 import br.com.services4you.comeerj.web.rest.errors.ExceptionTranslator;
@@ -55,9 +54,6 @@ public class TurmaResourceIntTest {
     private TurmaService turmaService;
 
     @Autowired
-    private TurmaSearchRepository turmaSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -98,7 +94,6 @@ public class TurmaResourceIntTest {
 
     @Before
     public void initTest() {
-        turmaSearchRepository.deleteAll();
         turma = createEntity(em);
     }
 
@@ -119,10 +114,6 @@ public class TurmaResourceIntTest {
         assertThat(turmaList).hasSize(databaseSizeBeforeCreate + 1);
         Turma testTurma = turmaList.get(turmaList.size() - 1);
         assertThat(testTurma.getNome()).isEqualTo(DEFAULT_NOME);
-
-        // Validate the Turma in Elasticsearch
-        Turma turmaEs = turmaSearchRepository.findOne(testTurma.getId());
-        assertThat(turmaEs).isEqualToIgnoringGivenFields(testTurma);
     }
 
     @Test
@@ -186,7 +177,6 @@ public class TurmaResourceIntTest {
     public void updateTurma() throws Exception {
         // Initialize the database
         turmaRepository.saveAndFlush(turma);
-        turmaSearchRepository.save(turma);
         int databaseSizeBeforeUpdate = turmaRepository.findAll().size();
 
         // Update the turma
@@ -207,10 +197,6 @@ public class TurmaResourceIntTest {
         assertThat(turmaList).hasSize(databaseSizeBeforeUpdate);
         Turma testTurma = turmaList.get(turmaList.size() - 1);
         assertThat(testTurma.getNome()).isEqualTo(UPDATED_NOME);
-
-        // Validate the Turma in Elasticsearch
-        Turma turmaEs = turmaSearchRepository.findOne(testTurma.getId());
-        assertThat(turmaEs).isEqualToIgnoringGivenFields(testTurma);
     }
 
     @Test
@@ -237,7 +223,6 @@ public class TurmaResourceIntTest {
     public void deleteTurma() throws Exception {
         // Initialize the database
         turmaRepository.saveAndFlush(turma);
-        turmaSearchRepository.save(turma);
         int databaseSizeBeforeDelete = turmaRepository.findAll().size();
 
         // Get the turma
@@ -245,28 +230,9 @@ public class TurmaResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean turmaExistsInEs = turmaSearchRepository.exists(turma.getId());
-        assertThat(turmaExistsInEs).isFalse();
-
         // Validate the database is empty
         List<Turma> turmaList = turmaRepository.findAll();
         assertThat(turmaList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchTurma() throws Exception {
-        // Initialize the database
-        turmaRepository.saveAndFlush(turma);
-        turmaSearchRepository.save(turma);
-
-        // Search the turma
-        restTurmaMockMvc.perform(get("/api/_search/turmas?query=id:" + turma.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(turma.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())));
     }
 
     @Test

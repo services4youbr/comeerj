@@ -5,7 +5,6 @@ import br.com.services4you.comeerj.ComeerjApp;
 import br.com.services4you.comeerj.domain.Polo;
 import br.com.services4you.comeerj.repository.PoloRepository;
 import br.com.services4you.comeerj.service.PoloService;
-import br.com.services4you.comeerj.repository.search.PoloSearchRepository;
 import br.com.services4you.comeerj.service.dto.PoloDTO;
 import br.com.services4you.comeerj.service.mapper.PoloMapper;
 import br.com.services4you.comeerj.web.rest.errors.ExceptionTranslator;
@@ -64,9 +63,6 @@ public class PoloResourceIntTest {
     private PoloService poloService;
 
     @Autowired
-    private PoloSearchRepository poloSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -110,7 +106,6 @@ public class PoloResourceIntTest {
 
     @Before
     public void initTest() {
-        poloSearchRepository.deleteAll();
         polo = createEntity(em);
     }
 
@@ -134,10 +129,6 @@ public class PoloResourceIntTest {
         assertThat(testPolo.getNumero()).isEqualTo(DEFAULT_NUMERO);
         assertThat(testPolo.getReunir()).isEqualTo(DEFAULT_REUNIR);
         assertThat(testPolo.getLocalizacao()).isEqualTo(DEFAULT_LOCALIZACAO);
-
-        // Validate the Polo in Elasticsearch
-        Polo poloEs = poloSearchRepository.findOne(testPolo.getId());
-        assertThat(poloEs).isEqualToIgnoringGivenFields(testPolo);
     }
 
     @Test
@@ -207,7 +198,6 @@ public class PoloResourceIntTest {
     public void updatePolo() throws Exception {
         // Initialize the database
         poloRepository.saveAndFlush(polo);
-        poloSearchRepository.save(polo);
         int databaseSizeBeforeUpdate = poloRepository.findAll().size();
 
         // Update the polo
@@ -234,10 +224,6 @@ public class PoloResourceIntTest {
         assertThat(testPolo.getNumero()).isEqualTo(UPDATED_NUMERO);
         assertThat(testPolo.getReunir()).isEqualTo(UPDATED_REUNIR);
         assertThat(testPolo.getLocalizacao()).isEqualTo(UPDATED_LOCALIZACAO);
-
-        // Validate the Polo in Elasticsearch
-        Polo poloEs = poloSearchRepository.findOne(testPolo.getId());
-        assertThat(poloEs).isEqualToIgnoringGivenFields(testPolo);
     }
 
     @Test
@@ -264,7 +250,6 @@ public class PoloResourceIntTest {
     public void deletePolo() throws Exception {
         // Initialize the database
         poloRepository.saveAndFlush(polo);
-        poloSearchRepository.save(polo);
         int databaseSizeBeforeDelete = poloRepository.findAll().size();
 
         // Get the polo
@@ -272,31 +257,9 @@ public class PoloResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean poloExistsInEs = poloSearchRepository.exists(polo.getId());
-        assertThat(poloExistsInEs).isFalse();
-
         // Validate the database is empty
         List<Polo> poloList = poloRepository.findAll();
         assertThat(poloList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchPolo() throws Exception {
-        // Initialize the database
-        poloRepository.saveAndFlush(polo);
-        poloSearchRepository.save(polo);
-
-        // Search the polo
-        restPoloMockMvc.perform(get("/api/_search/polos?query=id:" + polo.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(polo.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME.toString())))
-            .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.toString())))
-            .andExpect(jsonPath("$.[*].reunir").value(hasItem(DEFAULT_REUNIR.toString())))
-            .andExpect(jsonPath("$.[*].localizacao").value(hasItem(DEFAULT_LOCALIZACAO.toString())));
     }
 
     @Test

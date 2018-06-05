@@ -1,27 +1,27 @@
 {
   "generator-jhipster": {
     "promptValues": {
-      "packageName": "br.com.services4you.comeerj"
+      "packageName": "br.com.services4you.comeerj",
+      "nativeLanguage": "pt-br"
     },
     "jhipsterVersion": "4.14.4",
     "baseName": "comeerj",
     "packageName": "br.com.services4you.comeerj",
     "packageFolder": "br/com/services4you/comeerj",
     "serverPort": "8080",
-    "authenticationType": "jwt",
+    "authenticationType": "oauth2",
     "cacheProvider": "ehcache",
     "enableHibernateCache": true,
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "prodDatabaseType": "mysql",
-    "searchEngine": "elasticsearch",
+    "searchEngine": false,
     "messageBroker": false,
-    "serviceDiscoveryType": "eureka",
+    "serviceDiscoveryType": false,
     "buildTool": "maven",
-    "enableSocialSignIn": true,
-    "enableSwaggerCodegen": true,
-    "jwtSecretKey": "d38694bb618219310cd6b8f8c3ff2dd1dffde0f2",
+    "enableSocialSignIn": false,
+    "enableSwaggerCodegen": false,
     "clientFramework": "angularX",
     "useSass": true,
     "clientPackageManager": "yarn",
@@ -30,6 +30,11 @@
       "protractor"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": true,
+    "nativeLanguage": "pt-br",
+    "languages": [
+      "pt-br",
+      "en"
+    ]
   }
 }

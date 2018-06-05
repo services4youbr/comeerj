@@ -1,0 +1,26 @@
+
+{
+    "comeerjApp": {
+        "polo" : {
+            "home": {
+                "title": "Polos",
+                "createLabel": "Create a new Polo",
+                "createOrEditLabel": "Create or edit a Polo"
+            },
+            "created": "A new Polo is created with identifier {{ param }}",
+            "updated": "A Polo is updated with identifier {{ param }}",
+            "deleted": "A Polo is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Polo {{ id }}?"
+            },
+            "detail": {
+                "title": "Polo"
+            },
+            "nome": "Nome",
+            "numero": "Numero",
+            "reunir": "Reunir",
+            "localizacao": "Localizacao",
+            "inscricoes": "Inscricoes"
+        }
+    }
+}

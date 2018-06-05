@@ -70,7 +70,7 @@
             "fieldType": "Long"
         }
     ],
-    "changelogDate": "20180602012730",
+    "changelogDate": "20180605023023",
     "entityTableName": "inscricao",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -1,0 +1,12 @@
+{
+    "comeerjApp": {
+        "TipoParticicao" : {
+            "null": "",
+            "CONFRATERNISTA": "CONFRATERNISTA",
+            "TRABALHADOR": "TRABALHADOR",
+            "PEQUENOS_COMPANHEIROS": "PEQUENOS_COMPANHEIROS",
+            "PAIS": "PAIS",
+            "TAREFEIROS_DO_BEM": "TAREFEIROS_DO_BEM"
+        }
+    }
+}

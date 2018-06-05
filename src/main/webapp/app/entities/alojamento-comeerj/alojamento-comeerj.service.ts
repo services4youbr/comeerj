@@ -12,7 +12,6 @@ export type EntityResponseType = HttpResponse<AlojamentoComeerj>;
 export class AlojamentoComeerjService {
 
     private resourceUrl =  SERVER_API_URL + 'api/alojamentos';
-    private resourceSearchUrl = SERVER_API_URL + 'api/_search/alojamentos';
 
     constructor(private http: HttpClient) { }
 
@@ -41,12 +40,6 @@ export class AlojamentoComeerjService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
-    }
-
-    search(req?: any): Observable<HttpResponse<AlojamentoComeerj[]>> {
-        const options = createRequestOption(req);
-        return this.http.get<AlojamentoComeerj[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<AlojamentoComeerj[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

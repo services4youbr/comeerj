@@ -13,12 +13,6 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-eureka:
-    client:
-        enabled: true
-    instance:
-        appname: comeerj
-        instanceId: comeerj:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
@@ -49,14 +43,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.hbm2ddl.auto: validate
-    data:
-        elasticsearch:
-            cluster-name:
-            cluster-nodes:
-            properties:
-                path:
-                    logs: target/elasticsearch/log
-                    data: target/elasticsearch/data
     mail:
         host: localhost
     messages:
@@ -99,12 +85,6 @@ jhipster:
     mail:
         from: test@localhost
         base-url: http://127.0.0.1:8080
-    security:
-        authentication:
-            jwt:
-                secret: d38694bb618219310cd6b8f8c3ff2dd1dffde0f2
-                # Token is valid 24 hours
-                token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         logs: # Reports Dropwizard metrics in the logs

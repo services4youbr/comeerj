@@ -1,0 +1,26 @@
+
+{
+    "comeerjApp": {
+        "faixaEtaria" : {
+            "home": {
+                "title": "Faixa Etarias",
+                "createLabel": "Create a new Faixa Etaria",
+                "createOrEditLabel": "Create or edit a Faixa Etaria"
+            },
+            "created": "A new Faixa Etaria is created with identifier {{ param }}",
+            "updated": "A Faixa Etaria is updated with identifier {{ param }}",
+            "deleted": "A Faixa Etaria is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Faixa Etaria {{ id }}?"
+            },
+            "detail": {
+                "title": "Faixa Etaria"
+            },
+            "nome": "Nome",
+            "idadeMin": "Idade Min",
+            "idadeMaxima": "Idade Maxima",
+            "descricao": "Descricao",
+            "turmas": "Turmas"
+        }
+    }
+}

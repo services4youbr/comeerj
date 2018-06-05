@@ -1,0 +1,25 @@
+
+{
+    "comeerjApp": {
+        "turma" : {
+            "home": {
+                "title": "Turmas",
+                "createLabel": "Create a new Turma",
+                "createOrEditLabel": "Create or edit a Turma"
+            },
+            "created": "A new Turma is created with identifier {{ param }}",
+            "updated": "A Turma is updated with identifier {{ param }}",
+            "deleted": "A Turma is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Turma {{ id }}?"
+            },
+            "detail": {
+                "title": "Turma"
+            },
+            "nome": "Nome",
+            "inscritos": "Inscritos",
+            "evangelizadores": "Evangelizadores",
+            "faixaEtaria": "Faixa Etaria"
+        }
+    }
+}

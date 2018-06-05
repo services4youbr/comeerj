@@ -5,7 +5,6 @@ import br.com.services4you.comeerj.ComeerjApp;
 import br.com.services4you.comeerj.domain.Usuario;
 import br.com.services4you.comeerj.repository.UsuarioRepository;
 import br.com.services4you.comeerj.service.UsuarioService;
-import br.com.services4you.comeerj.repository.search.UsuarioSearchRepository;
 import br.com.services4you.comeerj.service.dto.UsuarioDTO;
 import br.com.services4you.comeerj.service.mapper.UsuarioMapper;
 import br.com.services4you.comeerj.web.rest.errors.ExceptionTranslator;
@@ -69,9 +68,6 @@ public class UsuarioResourceIntTest {
     private UsuarioService usuarioService;
 
     @Autowired
-    private UsuarioSearchRepository usuarioSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -116,7 +112,6 @@ public class UsuarioResourceIntTest {
 
     @Before
     public void initTest() {
-        usuarioSearchRepository.deleteAll();
         usuario = createEntity(em);
     }
 
@@ -141,10 +136,6 @@ public class UsuarioResourceIntTest {
         assertThat(testUsuario.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testUsuario.getPerfil()).isEqualTo(DEFAULT_PERFIL);
         assertThat(testUsuario.getGenero()).isEqualTo(DEFAULT_GENERO);
-
-        // Validate the Usuario in Elasticsearch
-        Usuario usuarioEs = usuarioSearchRepository.findOne(testUsuario.getId());
-        assertThat(usuarioEs).isEqualToIgnoringGivenFields(testUsuario);
     }
 
     @Test
@@ -216,7 +207,6 @@ public class UsuarioResourceIntTest {
     public void updateUsuario() throws Exception {
         // Initialize the database
         usuarioRepository.saveAndFlush(usuario);
-        usuarioSearchRepository.save(usuario);
         int databaseSizeBeforeUpdate = usuarioRepository.findAll().size();
 
         // Update the usuario
@@ -245,10 +235,6 @@ public class UsuarioResourceIntTest {
         assertThat(testUsuario.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testUsuario.getPerfil()).isEqualTo(UPDATED_PERFIL);
         assertThat(testUsuario.getGenero()).isEqualTo(UPDATED_GENERO);
-
-        // Validate the Usuario in Elasticsearch
-        Usuario usuarioEs = usuarioSearchRepository.findOne(testUsuario.getId());
-        assertThat(usuarioEs).isEqualToIgnoringGivenFields(testUsuario);
     }
 
     @Test
@@ -275,7 +261,6 @@ public class UsuarioResourceIntTest {
     public void deleteUsuario() throws Exception {
         // Initialize the database
         usuarioRepository.saveAndFlush(usuario);
-        usuarioSearchRepository.save(usuario);
         int databaseSizeBeforeDelete = usuarioRepository.findAll().size();
 
         // Get the usuario
@@ -283,32 +268,9 @@ public class UsuarioResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean usuarioExistsInEs = usuarioSearchRepository.exists(usuario.getId());
-        assertThat(usuarioExistsInEs).isFalse();
-
         // Validate the database is empty
         List<Usuario> usuarioList = usuarioRepository.findAll();
         assertThat(usuarioList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchUsuario() throws Exception {
-        // Initialize the database
-        usuarioRepository.saveAndFlush(usuario);
-        usuarioSearchRepository.save(usuario);
-
-        // Search the usuario
-        restUsuarioMockMvc.perform(get("/api/_search/usuarios?query=id:" + usuario.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(usuario.getId().intValue())))
-            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-            .andExpect(jsonPath("$.[*].perfil").value(hasItem(DEFAULT_PERFIL.toString())))
-            .andExpect(jsonPath("$.[*].genero").value(hasItem(DEFAULT_GENERO.toString())));
     }
 
     @Test

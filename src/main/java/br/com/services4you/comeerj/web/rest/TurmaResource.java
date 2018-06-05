@@ -21,9 +21,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Turma.
@@ -126,22 +123,4 @@ public class TurmaResource {
         turmaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/turmas?query=:query : search for the turma corresponding
-     * to the query.
-     *
-     * @param query the query of the turma search
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/turmas")
-    @Timed
-    public ResponseEntity<List<TurmaDTO>> searchTurmas(@RequestParam String query, Pageable pageable) {
-        log.debug("REST request to search for a page of Turmas for query {}", query);
-        Page<TurmaDTO> page = turmaService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/turmas");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 }

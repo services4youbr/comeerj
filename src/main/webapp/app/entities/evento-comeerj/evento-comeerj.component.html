@@ -1,41 +1,28 @@
 <div>
     <h2>
-        <span>Eventos</span>
+        <span jhiTranslate="comeerjApp.evento.home.title">Eventos</span>
         <button class="btn btn-primary float-right jh-create-entity create-evento-comeerj" [routerLink]="['/', { outlets: { popup: ['evento-comeerj-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down" >
+            <span  jhiTranslate="comeerjApp.evento.home.createLabel">
             Create new Evento
             </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
-        <div class="col-sm-12">
-            <form name="searchForm" class="form-inline">
-                <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
-                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
-                        <span class="fa fa-search"></span>
-                    </button>
-                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
-                        <span class="fa fa-trash-o"></span>
-                    </button>
-                </div>
-            </form>
-        </div>
     </div>
     <br/>
     <div class="table-responsive" *ngIf="eventos">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="versao"><span>Versao</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="tema"><span>Tema</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="inicioEvento"><span>Inicio Evento</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fimEvento"><span>Fim Evento</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="inicioInscricoes"><span>Inicio Inscricoes</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fimInscricoes"><span>Fim Inscricoes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="versao"><span jhiTranslate="comeerjApp.evento.versao">Versao</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tema"><span jhiTranslate="comeerjApp.evento.tema">Tema</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="inicioEvento"><span jhiTranslate="comeerjApp.evento.inicioEvento">Inicio Evento</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fimEvento"><span jhiTranslate="comeerjApp.evento.fimEvento">Fim Evento</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="inicioInscricoes"><span jhiTranslate="comeerjApp.evento.inicioInscricoes">Inicio Inscricoes</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fimInscricoes"><span jhiTranslate="comeerjApp.evento.fimInscricoes">Fim Inscricoes</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -54,7 +41,7 @@
                                 [routerLink]="['../evento-comeerj', evento.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline">View</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'evento-comeerj/'+ evento.id + '/edit'} }]"
@@ -62,7 +49,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'evento-comeerj/'+ evento.id + '/delete'} }]"
@@ -70,7 +57,7 @@
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </td>

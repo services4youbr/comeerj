@@ -11,7 +11,7 @@ describe('Turma e2e test', () => {
         browser.get('/');
         browser.waitForAngular();
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
+        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
         browser.waitForAngular();
     });
 
@@ -19,7 +19,7 @@ describe('Turma e2e test', () => {
         navBarPage.goToEntity('turma-comeerj');
         turmaComponentsPage = new TurmaComponentsPage();
         expect(turmaComponentsPage.getTitle())
-            .toMatch(/Turmas/);
+            .toMatch(/comeerjApp.turma.home.title/);
 
     });
 
@@ -27,7 +27,7 @@ describe('Turma e2e test', () => {
         turmaComponentsPage.clickOnCreateButton();
         turmaDialogPage = new TurmaDialogPage();
         expect(turmaDialogPage.getModalTitle())
-            .toMatch(/Create or edit a Turma/);
+            .toMatch(/comeerjApp.turma.home.createOrEditLabel/);
         turmaDialogPage.close();
     });
 
@@ -54,7 +54,7 @@ export class TurmaComponentsPage {
     }
 
     getTitle() {
-        return this.title.getText();
+        return this.title.getAttribute('jhiTranslate');
     }
 }
 
@@ -66,7 +66,7 @@ export class TurmaDialogPage {
     faixaEtariaSelect = element(by.css('select#field_faixaEtaria'));
 
     getModalTitle() {
-        return this.modalTitle.getText();
+        return this.modalTitle.getAttribute('jhiTranslate');
     }
 
     setNomeInput = function(nome) {

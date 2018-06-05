@@ -3,7 +3,6 @@ package br.com.services4you.comeerj.service.impl;
 import br.com.services4you.comeerj.service.UsuarioService;
 import br.com.services4you.comeerj.domain.Usuario;
 import br.com.services4you.comeerj.repository.UsuarioRepository;
-import br.com.services4you.comeerj.repository.search.UsuarioSearchRepository;
 import br.com.services4you.comeerj.service.dto.UsuarioDTO;
 import br.com.services4you.comeerj.service.mapper.UsuarioMapper;
 import org.slf4j.Logger;
@@ -13,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Usuario.
@@ -29,12 +26,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioMapper usuarioMapper;
 
-    private final UsuarioSearchRepository usuarioSearchRepository;
-
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, UsuarioSearchRepository usuarioSearchRepository) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
-        this.usuarioSearchRepository = usuarioSearchRepository;
     }
 
     /**
@@ -48,9 +42,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         log.debug("Request to save Usuario : {}", usuarioDTO);
         Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
         usuario = usuarioRepository.save(usuario);
-        UsuarioDTO result = usuarioMapper.toDto(usuario);
-        usuarioSearchRepository.save(usuario);
-        return result;
+        return usuarioMapper.toDto(usuario);
     }
 
     /**
@@ -90,21 +82,5 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void delete(Long id) {
         log.debug("Request to delete Usuario : {}", id);
         usuarioRepository.delete(id);
-        usuarioSearchRepository.delete(id);
-    }
-
-    /**
-     * Search for the usuario corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<UsuarioDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Usuarios for query {}", query);
-        Page<Usuario> result = usuarioSearchRepository.search(queryStringQuery(query), pageable);
-        return result.map(usuarioMapper::toDto);
     }
 }

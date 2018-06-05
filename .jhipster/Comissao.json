@@ -22,7 +22,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180602012731",
+    "changelogDate": "20180605023024",
     "entityTableName": "comissao",
     "dto": "mapstruct",
     "pagination": "pagination",

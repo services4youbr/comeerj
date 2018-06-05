@@ -3,7 +3,6 @@ package br.com.services4you.comeerj.service.impl;
 import br.com.services4you.comeerj.service.TurmaService;
 import br.com.services4you.comeerj.domain.Turma;
 import br.com.services4you.comeerj.repository.TurmaRepository;
-import br.com.services4you.comeerj.repository.search.TurmaSearchRepository;
 import br.com.services4you.comeerj.service.dto.TurmaDTO;
 import br.com.services4you.comeerj.service.mapper.TurmaMapper;
 import org.slf4j.Logger;
@@ -13,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Turma.
@@ -29,12 +26,9 @@ public class TurmaServiceImpl implements TurmaService {
 
     private final TurmaMapper turmaMapper;
 
-    private final TurmaSearchRepository turmaSearchRepository;
-
-    public TurmaServiceImpl(TurmaRepository turmaRepository, TurmaMapper turmaMapper, TurmaSearchRepository turmaSearchRepository) {
+    public TurmaServiceImpl(TurmaRepository turmaRepository, TurmaMapper turmaMapper) {
         this.turmaRepository = turmaRepository;
         this.turmaMapper = turmaMapper;
-        this.turmaSearchRepository = turmaSearchRepository;
     }
 
     /**
@@ -48,9 +42,7 @@ public class TurmaServiceImpl implements TurmaService {
         log.debug("Request to save Turma : {}", turmaDTO);
         Turma turma = turmaMapper.toEntity(turmaDTO);
         turma = turmaRepository.save(turma);
-        TurmaDTO result = turmaMapper.toDto(turma);
-        turmaSearchRepository.save(turma);
-        return result;
+        return turmaMapper.toDto(turma);
     }
 
     /**
@@ -90,21 +82,5 @@ public class TurmaServiceImpl implements TurmaService {
     public void delete(Long id) {
         log.debug("Request to delete Turma : {}", id);
         turmaRepository.delete(id);
-        turmaSearchRepository.delete(id);
-    }
-
-    /**
-     * Search for the turma corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<TurmaDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of Turmas for query {}", query);
-        Page<Turma> result = turmaSearchRepository.search(queryStringQuery(query), pageable);
-        return result.map(turmaMapper::toDto);
     }
 }

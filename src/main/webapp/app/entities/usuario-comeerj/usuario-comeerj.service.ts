@@ -12,7 +12,6 @@ export type EntityResponseType = HttpResponse<UsuarioComeerj>;
 export class UsuarioComeerjService {
 
     private resourceUrl =  SERVER_API_URL + 'api/usuarios';
-    private resourceSearchUrl = SERVER_API_URL + 'api/_search/usuarios';
 
     constructor(private http: HttpClient) { }
 
@@ -41,12 +40,6 @@ export class UsuarioComeerjService {
 
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
-    }
-
-    search(req?: any): Observable<HttpResponse<UsuarioComeerj[]>> {
-        const options = createRequestOption(req);
-        return this.http.get<UsuarioComeerj[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<UsuarioComeerj[]>) => this.convertArrayResponse(res));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

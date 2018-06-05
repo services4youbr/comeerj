@@ -33,7 +33,7 @@ export const turmaRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Turmas'
+            pageTitle: 'comeerjApp.turma.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -41,7 +41,7 @@ export const turmaRoute: Routes = [
         component: TurmaComeerjDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Turmas'
+            pageTitle: 'comeerjApp.turma.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -53,7 +53,7 @@ export const turmaPopupRoute: Routes = [
         component: TurmaComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Turmas'
+            pageTitle: 'comeerjApp.turma.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -63,7 +63,7 @@ export const turmaPopupRoute: Routes = [
         component: TurmaComeerjPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Turmas'
+            pageTitle: 'comeerjApp.turma.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -73,7 +73,7 @@ export const turmaPopupRoute: Routes = [
         component: TurmaComeerjDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Turmas'
+            pageTitle: 'comeerjApp.turma.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
